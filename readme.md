@@ -1,5 +1,10 @@
 # ACF Fluent
 
+[![StyleCI](https://styleci.io/repos/82142588/shield?branch=master)](https://styleci.io/repos/82142588)
+[![Travis branch](https://img.shields.io/travis/samrap/acf-fluent/master.svg?style=flat-square)]()
+[![GitHub issues](https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square)](https://github.com/samrap/acf-fluent/issues)
+[![Twitter](https://img.shields.io/twitter/url/http/github.com/samrap/acf-fluent.svg?style=social&style=flat-square)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
 A [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin.
 
 ### Why?
