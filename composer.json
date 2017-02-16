@@ -19,6 +19,7 @@
             "Acf\\Test\\": "tests/_util/"
         },
         "files": [
+            "src/helpers.php",
             "tests/_util/Mock/functions.php"
         ]
     },
