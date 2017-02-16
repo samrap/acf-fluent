@@ -4,7 +4,6 @@ namespace Acf;
 
 use Acf\Fluent\Runner;
 use Acf\Fluent\Builder;
-use BadMethodCallException;
 use Acf\Behaviors\FieldBehavior;
 use Acf\Behaviors\SubFieldBehavior;
 
@@ -13,7 +12,8 @@ class Acf
     /**
      * Private constructor to prevent instantiation.
      */
-    private function __construct() {
+    private function __construct()
+    {
         //
     }
 

@@ -12,7 +12,8 @@ final class Container
 
     private $items = [];
 
-    private function __construct() {
+    private function __construct()
+    {
         //
     }
 

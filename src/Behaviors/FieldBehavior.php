@@ -5,7 +5,7 @@ namespace Acf\Behaviors;
 class FieldBehavior implements BehaviorInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function get($field, $id = null)
     {
@@ -13,7 +13,7 @@ class FieldBehavior implements BehaviorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function update($field, $value, $id = null)
     {
