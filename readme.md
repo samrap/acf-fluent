@@ -195,4 +195,4 @@ ACF Fluent is still in its early stages. Issues, PRs, and enhancement ideas are 
 
 ---
 
-Built by [@thesamrapaport](https://twitter.com/thesamrapaport)
+![Tweeter](http://i.stack.imgur.com/IWyBR.png) Built by [@thesamrapaport](https://twitter.com/thesamrapaport)
