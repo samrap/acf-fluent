@@ -144,7 +144,9 @@ $field = Acf::subField('items')
 ```
 
 ---
+
 **Note:** Aside from the `get` method, which must be called last, the order of method calls on the builder does not matter. It is intellegent enough to know at what point to run each method. 
+
 ---
 
 #### `Acf\Fluent\Builder::escape(string $func = 'htmlspecialchars')`
