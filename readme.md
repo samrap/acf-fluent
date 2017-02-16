@@ -1,3 +1,5 @@
+![ACF Fluent](http://i.imgur.com/nrXtc1e.png)
+
 # ACF Fluent
 
 [![StyleCI](https://styleci.io/repos/82142588/shield?branch=master)](https://styleci.io/repos/82142588)
