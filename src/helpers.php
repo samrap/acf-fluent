@@ -30,7 +30,7 @@ if (! function_exists('fluent_sub_field')) {
 }
 
 if (! function_exists('fluent_option')) {
-     /**
+    /**
      * Return a new builder instance for an option field call.
      *
      * @param  string  $name
