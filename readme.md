@@ -203,3 +203,5 @@ ACF Fluent is still in its early stages. Issues, PRs, and enhancement ideas are 
 ---
 
 ![Tweeter](http://i.stack.imgur.com/IWyBR.png) Built by [@thesamrapaport](https://twitter.com/thesamrapaport)
+
+The ACF logo is owned by [Elliot Condon](http://www.elliotcondon.com/) and the [Advanced Custom Fields Plugin](https://www.advancedcustomfields.com/)
