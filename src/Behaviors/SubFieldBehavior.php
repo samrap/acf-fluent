@@ -9,7 +9,9 @@ class SubFieldBehavior implements BehaviorInterface
      */
     public function get($field, $id = null)
     {
-        return get_sub_field($field);
+        $value = get_sub_field($field);
+
+        return ($value !== false) ? $value : null;
     }
 
     /**
