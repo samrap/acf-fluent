@@ -95,6 +95,26 @@ use Acf\Acf;
 $toggle = Acf::option('toggle')->get();
 ```
 
+Alternatively, you can use the `fluent_*` helper functions to return a builder instance. The following functions will return a new builder for fields, sub fields, and options respectively:
+
+```php
+fluent_field('name');
+fluent_sub_field('name');
+fluent_option('name');
+```
+
+The field can then be retrieved by calling the `get` method as usual:
+
+```php
+$heading = fluent_field('heading')->get();
+```
+
+---
+
+**Note:** In order to use the helper functions, you must add the `"vendor/samrap/acf-fluent/src/helpers.php"` path in your `composer.json` [autoload files](https://getcomposer.org/doc/04-schema.md#files) setting to import them into your project.
+
+---
+
 The real power of ACF Fluent comes when we make full use of the builder. It provides methods such as `expect`, `default`, and `escape` that can be chained together to build powerful ACF "queries". Next, we will cover what each of these methods do and how to make use of them.
 
 ### Builder Methods
