@@ -21,7 +21,7 @@ $heading = get_field('heading');
 if (is_null('heading')) {
     $heading = get_the_title();
 } else {
-    $heading = htmlspecialchars($heading);
+    $heading = esc_html($heading);
 }
 
 ?>
@@ -176,7 +176,7 @@ $field = Acf::subField('items')
 
 ---
 
-#### `Acf\Fluent\Builder::escape(string $func = 'htmlspecialchars')`
+#### `Acf\Fluent\Builder::escape(string $func = 'esc_html')`
 
 The `escape` method will run the resulting value through a santization function to ensure the value is properly escaped:
 
@@ -188,21 +188,28 @@ $content = Acf::field('content')
               ->get();
 ```
 
- The default santization function is [`htmlspecialchars`](http://php.net/manual/en/function.htmlspecialchars.php). You can specify a different function to run simply by passing the name of the function as the method's single parameter:
+The default santization function is the WordPress [`esc_html`](https://codex.wordpress.org/Function_Reference/esc_html) function. You can specify a different function to run simply by passing the name of the function as the method's single parameter:
 
 ```php
 use Acf\Acf;
 
 $content = Acf::field('content')
-              ->escape('urlencode')
+              ->escape('esc_url')
               ->get();
 ```
 
 
 The current supported functions for the `escape` method are:
 
+- All WordPress escape functions listed [in the codex](https://codex.wordpress.org/Function_Reference/esc_html)
 - [`htmlspecialchars()`](http://php.net/manual/en/function.htmlspecialchars.php)
 - [`urlencode()`](http://php.net/manual/en/function.urlencode.php)
+
+---
+
+**Tip:** Although ACF Fluent supports `htmlspecialchars` and `urlencode`, it is best to use the escape functions that WordPress provides as they typically contain more secure functionality tailored specifically to WordPress.
+
+---
 
 ### Updating Fields
 

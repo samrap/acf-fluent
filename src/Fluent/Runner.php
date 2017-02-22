@@ -122,6 +122,11 @@ class Runner
         }
 
         $whitelist = [
+            'esc_attr',
+            'esc_html',
+            'esc_js',
+            'esc_textarea',
+            'esc_url',
             'htmlspecialchars',
             'urlencode',
         ];

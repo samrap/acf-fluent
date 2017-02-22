@@ -41,7 +41,7 @@ class BuilderTest extends TestCase
     {
         $this->builder->escape();
 
-        $this->assertEquals('htmlspecialchars', $this->builder->escape);
+        $this->assertEquals('esc_html', $this->builder->escape);
     }
 
     public function testSetEscapeAllowsCustomFunction()
@@ -70,7 +70,7 @@ class BuilderTest extends TestCase
         $this->assertEquals('foo', $this->builder->field);
         $this->assertEquals('string', $this->builder->expect);
         $this->assertEquals('bar', $this->builder->default);
-        $this->assertEquals('htmlspecialchars', $this->builder->escape);
+        $this->assertEquals('esc_html', $this->builder->escape);
     }
 
     public function testBuilderGet()
