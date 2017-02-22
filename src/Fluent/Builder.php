@@ -127,7 +127,7 @@ class Builder
      * @param  string  $func
      * @return \Acf\Fluent\Builder
      */
-    public function escape($func = 'htmlspecialchars')
+    public function escape($func = 'esc_html')
     {
         // It is up to the runner to prevent malicious code.
         $this->escape = $func;
