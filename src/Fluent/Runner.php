@@ -97,7 +97,7 @@ class Runner
     }
 
     /**
-     * Return the default value if the given value is null.
+     * Return the default value if the given value is empty or null.
      *
      * @param  mixed  $default
      * @param  mixed  $value
@@ -105,6 +105,12 @@ class Runner
      */
     protected function runDefault($default, $value)
     {
+        if (is_string($value) && strlen($value) === 0) {
+            return $default;
+        } elseif (is_array($value) && empty($value)) {
+            return $default;
+        }
+
         return $value ?? $default;
     }
 
