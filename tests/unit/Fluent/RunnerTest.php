@@ -132,6 +132,11 @@ class RunnerTest extends TestCase
         $this->assertEquals(123, $this->runner->runGet($builder));
     }
 
+    /**
+     * Get a fresh builder to work with.
+     *
+     * @return \Acf\Fluent\Builder
+     */
     protected function getFreshBuilder()
     {
         return new Builder(new RunnerMock);
