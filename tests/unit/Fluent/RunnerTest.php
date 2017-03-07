@@ -21,6 +21,7 @@ class RunnerTest extends TestCase
             'sentence' => 'nothing is certain but death and taxes',
             'array' => ['foo' => 'bar'],
             'empty_string' => '',
+            'empty_array' => [],
         ]);
 
         $this->runner = new Runner(new BehaviorMock);
@@ -99,13 +100,26 @@ class RunnerTest extends TestCase
 
     public function testGetFieldWithDefaultComponent()
     {
-        $builderOne = $this->getFreshBuilder();
-        $builderTwo = $this->getFreshBuilder();
-        $builderOne->field('name')->default('Bonnie');
-        $builderTwo->field('empty_string')->default('blam');
+        $builder = $this->getFreshBuilder();
+        $builder->field('name')->default('Bonnie');
 
-        $this->assertEquals('Bonnie', $this->runner->runGet($builderOne));
-        $this->assertEquals('blam', $this->runner->runGet($builderTwo));
+        $this->assertEquals('Bonnie', $this->runner->runGet($builder));
+    }
+
+    public function testGetFieldWithDefaultComponentWhenValueIsEmptyString()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('empty_string')->default('Non-empty string');
+
+        $this->assertEquals('Non-empty string', $this->runner->runGet($builder));
+    }
+
+    public function testGetFieldWithDefaultComponentWhenValueIsEmptyArray()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('empty_array')->default(['foo' => 'bar']);
+
+        $this->assertEquals(['foo' => 'bar'], $this->runner->runGet($builder));
     }
 
     public function testGetFieldWithMultipleComponents()

@@ -11,6 +11,8 @@ class Acf
 {
     /**
      * Private constructor to prevent instantiation.
+     *
+     * @codeCoverageIgnore The class cannot be instantiated.
      */
     private function __construct()
     {

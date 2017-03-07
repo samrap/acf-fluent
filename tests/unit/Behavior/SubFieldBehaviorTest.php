@@ -1,7 +1,7 @@
 <?php
 
 use Acf\Test\TestCase;
-use Acf\Behaviors\FieldBehavior;
+use Acf\Behaviors\SubFieldBehavior;
 
 class SubFieldBehaviorTest extends TestCase
 {
@@ -11,7 +11,7 @@ class SubFieldBehaviorTest extends TestCase
 
         $this->setFields(['foo' => 'bar']);
 
-        $this->behavior = new FieldBehavior;
+        $this->behavior = new SubFieldBehavior;
     }
 
     public function testGet()
