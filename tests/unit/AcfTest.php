@@ -10,8 +10,6 @@ use Acf\Behaviors\SubFieldBehavior;
 
 class AcfTest extends TestCase
 {
-    protected $acf;
-
     public function setUp()
     {
         parent::setUp();

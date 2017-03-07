@@ -1,7 +1,7 @@
 <?php
 
-use Acf\Fluent\Runner;
 use Tests\TestCase;
+use Acf\Fluent\Runner;
 use Acf\Fluent\Builder;
 use Tests\Support\Mocks\RunnerMock;
 use Tests\Support\Mocks\BehaviorMock;
