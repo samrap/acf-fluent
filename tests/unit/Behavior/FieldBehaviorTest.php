@@ -1,6 +1,6 @@
 <?php
 
-use Acf\Test\TestCase;
+use Tests\TestCase;
 use Acf\Behaviors\FieldBehavior;
 
 class FieldBehaviorTest extends TestCase

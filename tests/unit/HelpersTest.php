@@ -1,6 +1,8 @@
 <?php
 
-use Acf\Test\TestCase;
+namespace Tests\Unit;
+
+use Tests\TestCase;
 use Acf\Behaviors\FieldBehavior;
 use Acf\Behaviors\SubFieldBehavior;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acf\Test;
+namespace Tests\Support;
 
 /**
  * This container singleton can be used for testing implementations of the

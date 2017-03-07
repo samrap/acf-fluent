@@ -1,10 +1,10 @@
 <?php
 
 use Acf\Fluent\Runner;
-use Acf\Test\TestCase;
+use Tests\TestCase;
 use Acf\Fluent\Builder;
-use Acf\Test\Mock\RunnerMock;
-use Acf\Test\Mock\BehaviorMock;
+use Tests\Support\Mocks\RunnerMock;
+use Tests\Support\Mocks\BehaviorMock;
 
 class RunnerTest extends TestCase
 {

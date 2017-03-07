@@ -1,16 +1,11 @@
 <?php
 
-namespace Acf\Test;
+namespace Tests\Support\Traits;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use Tests\Support\Container;
 
-class TestCase extends BaseTestCase
+trait MocksFields
 {
-    public function setUp()
-    {
-        //
-    }
-
     /**
      * Populate the global test container with the given items.
      *
@@ -22,7 +17,12 @@ class TestCase extends BaseTestCase
         Container::setMany($items);
     }
 
-    public function tearDown()
+    /**
+     * Empty the global test container.
+     *
+     * @return void
+     */
+    protected function emptyFields()
     {
         Container::empty();
     }

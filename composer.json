@@ -16,11 +16,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Acf\\Test\\": "tests/_util/"
+            "Tests\\": "tests/"
         },
         "files": [
             "src/helpers.php",
-            "tests/_util/Mock/functions.php"
+            "tests/Support/Mocks/functions.php"
         ]
     },
     "require": {

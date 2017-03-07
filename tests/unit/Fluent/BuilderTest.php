@@ -1,8 +1,8 @@
 <?php
 
-use Acf\Test\TestCase;
+use Tests\TestCase;
 use Acf\Fluent\Builder;
-use Acf\Test\Mock\RunnerMock;
+use Tests\Support\Mocks\RunnerMock;
 
 class BuilderTest extends TestCase
 {
