@@ -16,49 +16,56 @@ class BuilderTest extends TestCase
         $this->builder = new Builder(new RunnerMock);
     }
 
-    public function testSetField()
+    /** @test */
+    public function setField()
     {
         $this->builder->field('foo');
 
         $this->assertEquals('foo', $this->builder->field);
     }
 
-    public function testSetExpect()
+    /** @test */
+    public function setExpect()
     {
         $this->builder->expect('string');
 
         $this->assertEquals('string', $this->builder->expect);
     }
 
-    public function testSetDefault()
+    /** @test */
+    public function setDefault()
     {
         $this->builder->default('bar');
 
         $this->assertEquals('bar', $this->builder->default);
     }
 
-    public function testSetEscape()
+    /** @test */
+    public function setEscape()
     {
         $this->builder->escape();
 
         $this->assertEquals('esc_html', $this->builder->escape);
     }
 
-    public function testSetEscapeAllowsCustomFunction()
+    /** @test */
+    public function setEscapeAllowsCustomFunction()
     {
         $this->builder->escape('htmlentities');
 
         $this->assertEquals('htmlentities', $this->builder->escape);
     }
 
-    public function testSetId()
+    /** @test */
+    public function setId()
     {
         $this->builder->id(2);
 
         $this->assertEquals(2, $this->builder->id);
     }
 
-    public function testFluentBuilder()
+    /** @test */
+    public function fluentBuilder()
     {
         $this->builder
             ->field('foo')
@@ -73,18 +80,23 @@ class BuilderTest extends TestCase
         $this->assertEquals('esc_html', $this->builder->escape);
     }
 
-    public function testBuilderGet()
+    /** @test */
+    public function builderGet()
     {
         $this->assertEquals('bar', $this->builder->field('foo')->get());
     }
 
-    /** @expectedException \Acf\Exceptions\BuilderException */
-    public function testBuilderGetThrowsExceptionIfFieldNotSet()
+    /**
+     * @test
+     * @expectedException \Acf\Exceptions\BuilderException
+     */
+    public function builderGetThrowsExceptionIfFieldNotSet()
     {
         $this->builder->get();
     }
 
-    public function testBuilderUpdate()
+    /** @test */
+    public function builderUpdate()
     {
         $this->builder->field('foo')->update('fiz');
 

@@ -8,7 +8,8 @@ use Acf\Behaviors\SubFieldBehavior;
 
 class HelpersTest extends TestCase
 {
-    public function testFluentFieldFunction()
+    /** @test */
+    public function fluentFieldFunction()
     {
         $this->assertInstanceOf(
             FieldBehavior::class,
@@ -16,7 +17,8 @@ class HelpersTest extends TestCase
         );
     }
 
-    public function testFluentSubFieldFunction()
+    /** @test */
+    public function fluentSubFieldFunction()
     {
         $this->assertInstanceOf(
             SubFieldBehavior::class,
@@ -24,7 +26,8 @@ class HelpersTest extends TestCase
         );
     }
 
-    public function testFluentOptionFunction()
+    /** @test */
+    public function fluentOptionFunction()
     {
         $builder = fluent_option('foo');
 
