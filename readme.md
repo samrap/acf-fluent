@@ -36,7 +36,7 @@ ACF Fluent aims to minimize the mess with a fluent builder that lets you easily 
 ```php
 <?php
 
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $heading = Acf::field('heading')
                 ->default(get_the_title())
@@ -61,20 +61,20 @@ composer require samrap/acf-fluent
 
 ### Basic Usage
 
-All calls to ACF Fluent are done through the `Acf\Acf` class. This class contains static methods which are _factories_ that always return an `Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields and sub fields, setting default values, adding constraints, and much more. 
+All calls to ACF Fluent are done through the `Samrap\Acf\Acf` class. This class contains static methods which are _factories_ that always return an `Samrap\Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields and sub fields, setting default values, adding constraints, and much more. 
 
-We can retrieve a builder instance for an ACF _field_ by calling the `Acf\Acf::field` method, passing in the name of the field as its argument. Let's take a look:
+We can retrieve a builder instance for an ACF _field_ by calling the `Samrap\Acf\Acf::field` method, passing in the name of the field as its argument. Let's take a look:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $field = Acf::field('heading');
 ```
 
-In the above example, we get a new `Acf\Fluent\Builder` instance for the `heading` ACF field. We can call the `get` method on the builder to retrieve the field:
+In the above example, we get a new `Samrap\Acf\Fluent\Builder` instance for the `heading` ACF field. We can call the `get` method on the builder to retrieve the field:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $heading = Acf::field('heading')->get();
 ```
@@ -82,7 +82,7 @@ $heading = Acf::field('heading')->get();
 The same can be done for sub fields just as easily via the `subField` method:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $content = Acf::subField('content')->get();
 ```
@@ -90,7 +90,7 @@ $content = Acf::subField('content')->get();
 And even global option fields:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $toggle = Acf::option('toggle')->get();
 ```
@@ -119,12 +119,12 @@ The real power of ACF Fluent comes when we make full use of the builder. It prov
 
 ### Builder Methods
 
-#### `Acf\Fluent\Builder::id(int $id)`
+#### `Samrap\Acf\Fluent\Builder::id(int $id)`
 
 Set the post ID to use when getting or updating a field:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $field = Acf::field('url')
             ->id(2)
@@ -133,12 +133,12 @@ $field = Acf::field('url')
 
 Alternatively, you may pass the Post ID straight into the static `field` method as the second parameter: `Acf::field('url', 2)->get()`.
 
-#### `Acf\Fluent\Builder::default(mixed $value)`
+#### `Samrap\Acf\Fluent\Builder::default(mixed $value)`
 
 Sometimes, ACF fields or sub fields are left empty. We can easily specify a default value by calling the builder's `default` method with any value as its single argument. The default value will be returned if the field is null:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $field = Acf::field('heading')
             ->default('Hello World')
@@ -147,12 +147,12 @@ $field = Acf::field('heading')
 
 When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a non-null value. If the value is null, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field.
 
-#### `Acf\Fluent\Builder::expect(string $type)`
+#### `Samrap\Acf\Fluent\Builder::expect(string $type)`
 
 We can call the `expect` method on a builder instance to specify the type of value that the field is expected to be:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $field = Acf::subField('items')
             ->expect('array')
@@ -162,7 +162,7 @@ $field = Acf::subField('items')
 If the result of `items` is an array, then we will get the items just as normal. But if the result is not an array, `null` will be returned as if the value was not even set. Taking our knowledge of this, we can then chain on a `default` value to return instead of null if the type does not match:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $field = Acf::subField('items')
             ->expect('array')
@@ -176,12 +176,12 @@ $field = Acf::subField('items')
 
 ---
 
-#### `Acf\Fluent\Builder::escape(string $func = 'esc_html')`
+#### `Samrap\Acf\Fluent\Builder::escape(string $func = 'esc_html')`
 
 The `escape` method will run the resulting value through a santization function to ensure the value is properly escaped:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $content = Acf::field('content')
               ->escape()
@@ -191,7 +191,7 @@ $content = Acf::field('content')
 The default santization function is the WordPress [`esc_html`](https://codex.wordpress.org/Function_Reference/esc_html) function. You can specify a different function to run simply by passing the name of the function as the method's single parameter:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 $content = Acf::field('content')
               ->escape('esc_url')
@@ -216,7 +216,7 @@ The current supported functions for the `escape` method are:
 Though typically less common, you may find yourself updating fields or sub fields from time to time. The fluent builder provides you with the `update` method to do just that:
 
 ```php
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 Acf::field('heading')->update('Hello World');
 Acf::subField('content')

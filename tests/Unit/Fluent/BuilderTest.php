@@ -1,12 +1,12 @@
 <?php
 
 use Tests\TestCase;
-use Acf\Fluent\Builder;
+use Samrap\Acf\Fluent\Builder;
 use Tests\Support\Mocks\RunnerMock;
 
 class BuilderTest extends TestCase
 {
-    /** @var \Acf\Fluent\Builder */
+    /** @var \Samrap\Acf\Fluent\Builder */
     protected $builder;
 
     public function setUp()
@@ -88,7 +88,7 @@ class BuilderTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Acf\Exceptions\BuilderException
+     * @expectedException \Samrap\Acf\Exceptions\BuilderException
      */
     public function builderGetThrowsExceptionIfFieldNotSet()
     {

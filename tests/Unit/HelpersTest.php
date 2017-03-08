@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Acf\Behaviors\FieldBehavior;
-use Acf\Behaviors\SubFieldBehavior;
+use Samrap\Acf\Behaviors\FieldBehavior;
+use Samrap\Acf\Behaviors\SubFieldBehavior;
 
 class HelpersTest extends TestCase
 {

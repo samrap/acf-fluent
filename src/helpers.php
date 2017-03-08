@@ -1,6 +1,6 @@
 <?php
 
-use Acf\Acf;
+use Samrap\Acf\Acf;
 
 if (! function_exists('fluent_field')) {
     /**
@@ -8,7 +8,7 @@ if (! function_exists('fluent_field')) {
      *
      * @param  string  $name
      * @param  int  $id
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     function fluent_field($name, $id = null)
     {
@@ -21,7 +21,7 @@ if (! function_exists('fluent_sub_field')) {
      * Return a new builder instance for a subfield call.
      *
      * @param  string  $name
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     function fluent_sub_field($name)
     {
@@ -34,7 +34,7 @@ if (! function_exists('fluent_option')) {
      * Return a new builder instance for an option field call.
      *
      * @param  string  $name
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     function fluent_option($name)
     {

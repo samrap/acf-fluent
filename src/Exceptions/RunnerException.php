@@ -1,6 +1,6 @@
 <?php
 
-namespace Acf\Exceptions;
+namespace Samrap\Acf\Exceptions;
 
 use Exception;
 

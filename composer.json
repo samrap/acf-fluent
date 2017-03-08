@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Acf\\": "src/"
+            "Samrap\\Acf\\": "src/"
         }
     },
     "autoload-dev": {

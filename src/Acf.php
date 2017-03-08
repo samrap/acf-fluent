@@ -1,11 +1,11 @@
 <?php
 
-namespace Acf;
+namespace Samrap\Acf;
 
-use Acf\Fluent\Runner;
-use Acf\Fluent\Builder;
-use Acf\Behaviors\FieldBehavior;
-use Acf\Behaviors\SubFieldBehavior;
+use Samrap\Acf\Fluent\Runner;
+use Samrap\Acf\Fluent\Builder;
+use Samrap\Acf\Behaviors\FieldBehavior;
+use Samrap\Acf\Behaviors\SubFieldBehavior;
 
 class Acf
 {
@@ -24,7 +24,7 @@ class Acf
      *
      * @param  string  $name
      * @param  int  $id
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     public static function field($name, $id = null)
     {
@@ -37,7 +37,7 @@ class Acf
      * Return a new builder instance for a subfield call.
      *
      * @param  string  $name
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     public static function subField($name)
     {
@@ -48,7 +48,7 @@ class Acf
      * Return a new builder instance for an option field call.
      *
      * @param  string  $name
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     public static function option($name)
     {
@@ -61,7 +61,7 @@ class Acf
      * Return a builder instance with the given behavior.
      *
      * @param  string  $behavior
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     private static function getBuilder($behavior)
     {

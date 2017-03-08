@@ -4,7 +4,7 @@ namespace Tests\Support;
 
 /**
  * This container singleton can be used for testing implementations of the
- * \Acf\Behavior\BehaviorInterface contract.
+ * \Samrap\Acf\Behavior\BehaviorInterface contract.
  */
 final class Container
 {

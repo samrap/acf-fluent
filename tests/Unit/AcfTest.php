@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use Acf\Acf;
+use Samrap\Acf\Acf;
 use Tests\TestCase;
-use Acf\Fluent\Builder;
-use Acf\Behaviors\FieldBehavior;
-use Acf\Behaviors\SubFieldBehavior;
+use Samrap\Acf\Fluent\Builder;
+use Samrap\Acf\Behaviors\FieldBehavior;
+use Samrap\Acf\Behaviors\SubFieldBehavior;
 
 class AcfTest extends TestCase
 {

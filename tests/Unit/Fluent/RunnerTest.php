@@ -1,14 +1,14 @@
 <?php
 
 use Tests\TestCase;
-use Acf\Fluent\Runner;
-use Acf\Fluent\Builder;
+use Samrap\Acf\Fluent\Runner;
+use Samrap\Acf\Fluent\Builder;
 use Tests\Support\Mocks\RunnerMock;
 use Tests\Support\Mocks\BehaviorMock;
 
 class RunnerTest extends TestCase
 {
-    /** @var \Acf\Fluent\Runner */
+    /** @var \Samrap\Acf\Fluent\Runner */
     protected $runner;
 
     public function setUp()
@@ -97,7 +97,7 @@ class RunnerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Acf\Exceptions\RunnerException
+     * @expectedException \Samrap\Acf\Exceptions\RunnerException
      */
     public function escapeComponentThrowsExceptionForNonString()
     {
@@ -148,7 +148,7 @@ class RunnerTest extends TestCase
     /**
      * Get a fresh builder to work with.
      *
-     * @return \Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Builder
      */
     protected function getFreshBuilder()
     {

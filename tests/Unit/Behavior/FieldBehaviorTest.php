@@ -1,7 +1,7 @@
 <?php
 
 use Tests\TestCase;
-use Acf\Behaviors\FieldBehavior;
+use Samrap\Acf\Behaviors\FieldBehavior;
 
 class FieldBehaviorTest extends TestCase
 {
