@@ -1,14 +1,14 @@
 <?php
 
-use Acf\Fluent\Runner;
-use Acf\Test\TestCase;
-use Acf\Fluent\Builder;
-use Acf\Test\Mock\RunnerMock;
-use Acf\Test\Mock\BehaviorMock;
+use Tests\TestCase;
+use Samrap\Acf\Fluent\Runner;
+use Samrap\Acf\Fluent\Builder;
+use Tests\Support\Mocks\RunnerMock;
+use Tests\Support\Mocks\BehaviorMock;
 
 class RunnerTest extends TestCase
 {
-    /** @var \Acf\Fluent\Runner */
+    /** @var \Samrap\Acf\Fluent\Runner */
     protected $runner;
 
     public function setUp()
@@ -21,12 +21,14 @@ class RunnerTest extends TestCase
             'sentence' => 'nothing is certain but death and taxes',
             'array' => ['foo' => 'bar'],
             'empty_string' => '',
+            'empty_array' => [],
         ]);
 
         $this->runner = new Runner(new BehaviorMock);
     }
 
-    public function testRunnerGetsField()
+    /** @test */
+    public function runnerGetsField()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('word');
@@ -34,7 +36,8 @@ class RunnerTest extends TestCase
         $this->assertEquals('bar', $this->runner->runGet($builder));
     }
 
-    public function testRunnerUpdatesField()
+    /** @test */
+    public function runnerUpdatesField()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('bourbon');
@@ -43,7 +46,8 @@ class RunnerTest extends TestCase
         $this->assertEquals('makers', $this->runner->runGet($builder));
     }
 
-    public function testRunnerGetsFieldWithExpectComponent()
+    /** @test */
+    public function runnerGetsFieldWithExpectComponent()
     {
         $trueBuilder = $this->getFreshBuilder();
         $trueBuilder->field('word')->expect('string');
@@ -58,7 +62,8 @@ class RunnerTest extends TestCase
         $this->assertNull($this->runner->runGet($falseBuilder));
     }
 
-    public function testRunnerGetsFieldWithEscapeComponent()
+    /** @test */
+    public function runnerGetsFieldWithEscapeComponent()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('html')->escape();
@@ -69,7 +74,8 @@ class RunnerTest extends TestCase
         );
     }
 
-    public function testEscapeComponentWithUrlencode()
+    /** @test */
+    public function escapeComponentWithUrlencode()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('sentence')->escape('urlencode');
@@ -80,7 +86,8 @@ class RunnerTest extends TestCase
         );
     }
 
-    public function testEscapeComponentIsWhitelisted()
+    /** @test */
+    public function escapeComponentIsWhitelisted()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('word')->escape('strtoupper');
@@ -88,8 +95,11 @@ class RunnerTest extends TestCase
         $this->assertEquals('bar', $this->runner->runGet($builder));
     }
 
-    /** @expectedException \Acf\Exceptions\RunnerException */
-    public function testEscapeComponentThrowsExceptionForNonString()
+    /**
+     * @test
+     * @expectedException \Samrap\Acf\Exceptions\RunnerException
+     */
+    public function escapeComponentThrowsExceptionForNonString()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('array')->escape();
@@ -97,18 +107,35 @@ class RunnerTest extends TestCase
         $this->runner->runGet($builder);
     }
 
-    public function testGetFieldWithDefaultComponent()
+    /** @test */
+    public function getFieldWithDefaultComponent()
     {
-        $builderOne = $this->getFreshBuilder();
-        $builderTwo = $this->getFreshBuilder();
-        $builderOne->field('name')->default('Bonnie');
-        $builderTwo->field('empty_string')->default('blam');
+        $builder = $this->getFreshBuilder();
+        $builder->field('name')->default('Bonnie');
 
-        $this->assertEquals('Bonnie', $this->runner->runGet($builderOne));
-        $this->assertEquals('blam', $this->runner->runGet($builderTwo));
+        $this->assertEquals('Bonnie', $this->runner->runGet($builder));
     }
 
-    public function testGetFieldWithMultipleComponents()
+    /** @test */
+    public function getFieldWithDefaultComponentWhenValueIsEmptyString()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('empty_string')->default('Non-empty string');
+
+        $this->assertEquals('Non-empty string', $this->runner->runGet($builder));
+    }
+
+    /** @test */
+    public function getFieldWithDefaultComponentWhenValueIsEmptyArray()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('empty_array')->default(['foo' => 'bar']);
+
+        $this->assertEquals(['foo' => 'bar'], $this->runner->runGet($builder));
+    }
+
+    /** @test */
+    public function getFieldWithMultipleComponents()
     {
         $builder = $this->getFreshBuilder();
         $builder->field('word')
@@ -118,6 +145,11 @@ class RunnerTest extends TestCase
         $this->assertEquals(123, $this->runner->runGet($builder));
     }
 
+    /**
+     * Get a fresh builder to work with.
+     *
+     * @return \Samrap\Acf\Fluent\Builder
+     */
     protected function getFreshBuilder()
     {
         return new Builder(new RunnerMock);

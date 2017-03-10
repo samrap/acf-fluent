@@ -1,15 +1,15 @@
 <?php
 
-use Acf\Acf;
-use Acf\Test\TestCase;
-use Acf\Fluent\Builder;
-use Acf\Behaviors\FieldBehavior;
-use Acf\Behaviors\SubFieldBehavior;
+namespace Tests\Unit;
+
+use Samrap\Acf\Acf;
+use Tests\TestCase;
+use Samrap\Acf\Fluent\Builder;
+use Samrap\Acf\Behaviors\FieldBehavior;
+use Samrap\Acf\Behaviors\SubFieldBehavior;
 
 class AcfTest extends TestCase
 {
-    protected $acf;
-
     public function setUp()
     {
         parent::setUp();
@@ -17,14 +17,16 @@ class AcfTest extends TestCase
         $this->setFields(['foo' => 'bar']);
     }
 
-    public function testItCreatesBuilder()
+    /** @test */
+    public function itCreatesBuilder()
     {
         $this->assertInstanceOf(Builder::class, Acf::field('foo'));
         $this->assertInstanceOf(Builder::class, Acf::subField('foo'));
         $this->assertInstanceOf(Builder::class, Acf::option('foo'));
     }
 
-    public function testFieldBuilderUsesRunnerWithFieldBehavior()
+    /** @test */
+    public function fieldBuilderUsesRunnerWithFieldBehavior()
     {
         $this->assertInstanceOf(
             FieldBehavior::class,
@@ -32,7 +34,8 @@ class AcfTest extends TestCase
         );
     }
 
-    public function testSubFieldBuilderUsesRunnerWithSubFieldBehavior()
+    /** @test */
+    public function subFieldBuilderUsesRunnerWithSubFieldBehavior()
     {
         $this->assertInstanceOf(
             SubFieldBehavior::class,
@@ -40,7 +43,8 @@ class AcfTest extends TestCase
         );
     }
 
-    public function testOptionBuilderUserRunnerWithFieldBehavior()
+    /** @test */
+    public function optionBuilderUserRunnerWithFieldBehavior()
     {
         $this->assertInstanceOf(
             FieldBehavior::class,
@@ -48,17 +52,20 @@ class AcfTest extends TestCase
         );
     }
 
-    public function testOptionBuilderUsesOptionPost()
+    /** @test */
+    public function optionBuilderUsesOptionPost()
     {
         $this->assertEquals('option', Acf::option('foo')->id);
     }
 
-    public function testSetIdOnFieldMethod()
+    /** @test */
+    public function setIdOnFieldMethod()
     {
         $this->assertEquals(2, Acf::field('foo', 2)->id);
     }
 
-    public function testFluentCall()
+    /** @test */
+    public function fluentCall()
     {
         $value = Acf::field('title')
                     ->expect('string')

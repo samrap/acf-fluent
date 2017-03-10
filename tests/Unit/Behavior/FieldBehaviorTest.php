@@ -1,9 +1,9 @@
 <?php
 
-use Acf\Test\TestCase;
-use Acf\Behaviors\FieldBehavior;
+use Tests\TestCase;
+use Samrap\Acf\Behaviors\FieldBehavior;
 
-class SubFieldBehaviorTest extends TestCase
+class FieldBehaviorTest extends TestCase
 {
     public function setUp()
     {
@@ -14,12 +14,14 @@ class SubFieldBehaviorTest extends TestCase
         $this->behavior = new FieldBehavior;
     }
 
-    public function testGet()
+    /** @test */
+    public function get()
     {
         $this->assertEquals('bar', $this->behavior->get('foo'));
     }
 
-    public function testUpdate()
+    /** @test */
+    public function update()
     {
         $this->behavior->update('foo', 'fiz');
         $this->assertEquals('fiz', $this->behavior->get('foo'));

@@ -1,9 +1,9 @@
 <?php
 
-namespace Acf\Test\Mock;
+namespace Tests\Support\Mocks;
 
-use Acf\Test\Container;
-use Acf\Behaviors\BehaviorInterface;
+use Tests\Support\Container;
+use Samrap\Acf\Behaviors\BehaviorInterface;
 
 class BehaviorMock implements BehaviorInterface
 {

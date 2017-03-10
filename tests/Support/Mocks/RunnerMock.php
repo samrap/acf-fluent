@@ -1,8 +1,8 @@
 <?php
 
-namespace Acf\Test\Mock;
+namespace Tests\Support\Mocks;
 
-use Acf\Fluent\Runner;
+use Samrap\Acf\Fluent\Runner;
 
 class RunnerMock extends Runner
 {

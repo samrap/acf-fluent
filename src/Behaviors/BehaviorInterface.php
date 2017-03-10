@@ -1,6 +1,6 @@
 <?php
 
-namespace Acf\Behaviors;
+namespace Samrap\Acf\Behaviors;
 
 interface BehaviorInterface
 {
