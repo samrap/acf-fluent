@@ -135,7 +135,7 @@ Alternatively, you may pass the Post ID straight into the static `field` method 
 
 #### `Samrap\Acf\Fluent\Builder::default(mixed $value)`
 
-Sometimes, ACF fields or sub fields are left empty. We can easily specify a default value by calling the builder's `default` method with any value as its single argument. The default value will be returned if the field is null:
+Sometimes, ACF fields or sub fields are left empty. We can easily specify a default value by calling the builder's `default` method with any value as its single argument. The default value will be returned if the field is null or empty:
 
 ```php
 use Samrap\Acf\Acf;
@@ -145,7 +145,7 @@ $field = Acf::field('heading')
             ->get();
 ```
 
-When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a non-null value. If the value is null, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field.
+When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a non-null or empty value. If the value is null or empty, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field. Note that "empty" refers to an empty array or a string whose length is zero.
 
 #### `Samrap\Acf\Fluent\Builder::expect(string $type)`
 
