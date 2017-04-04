@@ -211,6 +211,20 @@ The current supported functions for the `escape` method are:
 
 ---
 
+#### `Samrap\Acf\Fluent\Builder::shortcodes(void)`
+
+You may have a textarea or WYSIWYG field in which you wish to support shortcodes. You could pass the retreived value through the `do_shortcode` function, but with ACF Fluent there is a better way. The `shortcodes` method will instruct ACF Fluent to call the WordPress `do_shortcode` function on the retrieved value automatically:
+
+```php
+use Samrap\Acf\Acf;
+
+$content = Acf::field('wysiwyg')
+              ->shortcodes()
+              ->get();
+```
+
+If the field value is not a string, a `\Samrap\Acf\Exceptions\RunnerException` exception will be thrown.
+
 ### Updating Fields
 
 Though typically less common, you may find yourself updating fields or sub fields from time to time. The fluent builder provides you with the `update` method to do just that:

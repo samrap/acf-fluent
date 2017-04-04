@@ -50,6 +50,13 @@ class Builder
     public $escape;
 
     /**
+     * Whether or not to do shortcodes.
+     *
+     * @var bool
+     */
+    public $shortcodes;
+
+    /**
      * Create a new Builder instance.
      *
      * @param  \Samrap\Acf\Fluent\Runner  $runner
@@ -131,6 +138,18 @@ class Builder
     {
         // It is up to the runner to prevent malicious code.
         $this->escape = $func;
+
+        return $this;
+    }
+
+    /**
+     * Set the shortcodes component.
+     *
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function shortcodes()
+    {
+        $this->shortcodes = true;
 
         return $this;
     }

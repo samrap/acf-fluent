@@ -145,6 +145,31 @@ class RunnerTest extends TestCase
         $this->assertEquals(123, $this->runner->runGet($builder));
     }
 
+    /** @test */
+    public function doShortcodesOnField()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder
+            ->field('word')
+            ->shortcodes();
+
+        $this->assertEquals('shortcode bar', $this->runner->runGet($builder));
+    }
+
+    /**
+     * @test
+     * @expectedException \Samrap\Acf\Exceptions\RunnerException
+     */
+    public function doShortcodesOnNonStringFieldThrowsException()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder
+            ->field('array')
+            ->shortcodes();
+
+        $this->runner->runGet($builder);
+    }
+
     /**
      * Get a fresh builder to work with.
      *

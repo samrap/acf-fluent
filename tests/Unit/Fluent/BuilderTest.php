@@ -65,6 +65,14 @@ class BuilderTest extends TestCase
     }
 
     /** @test */
+    public function setShortcodes()
+    {
+        $this->builder->shortcodes();
+
+        $this->assertTrue($this->builder->shortcodes);
+    }
+
+    /** @test */
     public function fluentBuilder()
     {
         $this->builder
