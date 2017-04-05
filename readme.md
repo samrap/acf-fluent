@@ -11,7 +11,7 @@ A [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Adv
 
 ### Why?
 
-If you make heavy use of ACF fields in your WordPress templates (you should), then you probably find yourself writing a lot of repetitive code just to print out your fields. For example, you might have a `heading` field for your page's hero section:
+If you make heavy use of Advanced Custom Fields in your WordPress templates (you should), then you probably find yourself writing a lot of repetitive code just to print out your fields. For example, you might have a `heading` field for your page's hero section:
 
 ```php
 <?php
@@ -61,7 +61,7 @@ composer require samrap/acf-fluent
 
 ### Basic Usage
 
-All calls to ACF Fluent are done through the `Samrap\Acf\Acf` class. This class contains static methods which are _factories_ that always return an `Samrap\Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields and sub fields, setting default values, adding constraints, and much more. 
+All calls to ACF Fluent are done through the `Samrap\Acf\Acf` class. This class contains a few static factory methods that always return a `Samrap\Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields and sub fields, setting default values, adding constraints, and much more. 
 
 We can retrieve a builder instance for an ACF _field_ by calling the `Samrap\Acf\Acf::field` method, passing in the name of the field as its argument. Let's take a look:
 
@@ -111,11 +111,11 @@ $heading = fluent_field('heading')->get();
 
 ---
 
-**Note:** In order to use the helper functions, you must add the `"vendor/samrap/acf-fluent/src/helpers.php"` path in your `composer.json` [autoload files](https://getcomposer.org/doc/04-schema.md#files) setting to import them into your project.
+**Note:** The fluent helper functions are not included by default. In order to use them, the `vendor/samrap/acf-fluent/src/helpers.php` file will need to be included in your theme.
 
 ---
 
-The real power of ACF Fluent comes when we make full use of the builder. It provides methods such as `expect`, `default`, and `escape` that can be chained together to build powerful ACF "queries". Next, we will cover what each of these methods do and how to make use of them.
+The real power of ACF Fluent comes when we make full use of the builder. It provides useful methods that can be chained together to build powerful ACF "queries". Next, we will cover what each of these methods do and how to make use of them.
 
 ### Builder Methods
 
@@ -135,7 +135,7 @@ Alternatively, you may pass the Post ID straight into the static `field` method 
 
 #### `Samrap\Acf\Fluent\Builder::default(mixed $value)`
 
-Sometimes, ACF fields or sub fields are left empty. We can easily specify a default value by calling the builder's `default` method with any value as its single argument. The default value will be returned if the field is null or empty:
+Sometimes, ACF fields or sub fields are left empty by users. We can easily specify a default value by calling the builder's `default` method with any value as its single argument. The default value will be returned if the field is null or empty:
 
 ```php
 use Samrap\Acf\Acf;
@@ -145,7 +145,7 @@ $field = Acf::field('heading')
             ->get();
 ```
 
-When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a non-null or empty value. If the value is null or empty, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field. Note that "empty" refers to an empty array or a string whose length is zero.
+When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a null or empty value. If the value is null or empty, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field. In the scope of this package, the term "empty" refers to an empty array or a string whose length is zero.
 
 #### `Samrap\Acf\Fluent\Builder::expect(string $type)`
 
@@ -197,7 +197,6 @@ $content = Acf::field('content')
               ->escape('esc_url')
               ->get();
 ```
-
 
 The current supported functions for the `escape` method are:
 
