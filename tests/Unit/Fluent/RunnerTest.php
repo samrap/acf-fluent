@@ -22,6 +22,7 @@ class RunnerTest extends TestCase
             'array' => ['foo' => 'bar'],
             'empty_string' => '',
             'empty_array' => [],
+            'int_string' => '10',
         ]);
 
         $this->runner = new Runner(new BehaviorMock);
@@ -47,19 +48,21 @@ class RunnerTest extends TestCase
     }
 
     /** @test */
-    public function runnerGetsFieldWithExpectComponent()
+    public function runnerExpectComponentPasses()
     {
-        $trueBuilder = $this->getFreshBuilder();
-        $trueBuilder->field('word')->expect('string');
+        $builder = $this->getFreshBuilder();
+        $builder->field('array')->expect('array');
 
-        $falseBuilder = $this->getFreshBuilder();
-        $falseBuilder->field('word')->expect('int');
+        $this->assertInternalType('array', $this->runner->runGet($builder));
+    }
 
-        $this->assertInternalType(
-            'string',
-            $this->runner->runGet($trueBuilder)
-        );
-        $this->assertNull($this->runner->runGet($falseBuilder));
+    /** @test */
+    public function runnerExpectComponentFails()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('word')->expect('int');
+
+        $this->assertNull($this->runner->runGet($builder));
     }
 
     /** @test */
