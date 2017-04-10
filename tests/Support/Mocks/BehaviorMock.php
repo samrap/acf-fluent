@@ -2,7 +2,6 @@
 
 namespace Tests\Support\Mocks;
 
-use Tests\Support\Container;
 use Samrap\Acf\Behaviors\BehaviorInterface;
 
 class BehaviorMock implements BehaviorInterface
@@ -14,13 +13,13 @@ class BehaviorMock implements BehaviorInterface
         $this->mockedFields = $fields;
     }
 
-    public function get($field, $id = null)
+    public function get($field, $id = null, $format_value = true)
     {
-        return Container::get($field);
+        return get_field($field, $id, $format_value);
     }
 
     public function update($field, $value, $id = null)
     {
-        Container::set($field, $value);
+        update_field($field, $value);
     }
 }

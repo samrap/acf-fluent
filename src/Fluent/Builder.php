@@ -56,6 +56,13 @@ class Builder
      */
     public $shortcodes;
 
+    /*
+     * Get the field raw (unformatted).
+     *
+     * @var bool
+     */
+    public $raw = false;
+
     /**
      * Create a new Builder instance.
      *
@@ -150,6 +157,16 @@ class Builder
     public function shortcodes()
     {
         $this->shortcodes = true;
+    }
+
+    /*
+     * Set the raw component.
+     *
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function raw()
+    {
+        $this->raw = true;
 
         return $this;
     }
