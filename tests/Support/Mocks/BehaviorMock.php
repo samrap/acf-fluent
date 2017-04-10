@@ -2,7 +2,6 @@
 
 namespace Tests\Support\Mocks;
 
-use Tests\Support\Container;
 use Samrap\Acf\Behaviors\BehaviorInterface;
 
 class BehaviorMock implements BehaviorInterface

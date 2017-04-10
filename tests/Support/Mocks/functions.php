@@ -7,7 +7,7 @@ function get_field($field, $id = null, $format_value = true)
     $value = Container::get($field);
 
     return (! $format_value && is_string($value))
-        ? $value . ' [not formatted]'
+        ? $value.' [not formatted]'
         : $value;
 }
 
@@ -16,7 +16,7 @@ function get_sub_field($field, $format_value = true)
     $value = Container::get($field);
 
     return (! $format_value && is_string($value))
-        ? $value . ' [not formatted]'
+        ? $value.' [not formatted]'
         : $value;
 }
 
