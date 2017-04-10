@@ -65,6 +65,14 @@ class BuilderTest extends TestCase
     }
 
     /** @test */
+    public function setRaw()
+    {
+        $this->builder->raw();
+
+        $this->assertTrue($this->builder->raw);
+    }
+
+    /** @test */
     public function fluentBuilder()
     {
         $this->builder

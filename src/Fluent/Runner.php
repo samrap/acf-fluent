@@ -57,7 +57,11 @@ class Runner
     public function runGet(Builder $builder)
     {
         // First, we will retrieve the field's value using our composed behavior.
-        $value = $this->behavior->get($builder->field, $builder->id);
+        $value = $this->behavior->get(
+            $builder->field,
+            $builder->id,
+            ! $builder->raw
+        );
 
         // Next, we will iterate over the defined components and pass our value
         // through each component's method if it was defined on the builder.

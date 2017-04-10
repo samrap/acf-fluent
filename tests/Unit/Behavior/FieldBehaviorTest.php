@@ -21,6 +21,15 @@ class FieldBehaviorTest extends TestCase
     }
 
     /** @test */
+    public function getWithUnformattedValue()
+    {
+        $this->assertEquals(
+            'bar [not formatted]',
+            $this->behavior->get('foo', null, false)
+        );
+    }
+
+    /** @test */
     public function update()
     {
         $this->behavior->update('foo', 'fiz');

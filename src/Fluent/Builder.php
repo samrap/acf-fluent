@@ -50,6 +50,13 @@ class Builder
     public $escape;
 
     /**
+     * Get the field raw (unformatted).
+     *
+     * @var bool
+     */
+    public $raw = false;
+
+    /**
      * Create a new Builder instance.
      *
      * @param  \Samrap\Acf\Fluent\Runner  $runner
@@ -131,6 +138,18 @@ class Builder
     {
         // It is up to the runner to prevent malicious code.
         $this->escape = $func;
+
+        return $this;
+    }
+
+    /**
+     * Set the raw component.
+     *
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function raw()
+    {
+        $this->raw = true;
 
         return $this;
     }

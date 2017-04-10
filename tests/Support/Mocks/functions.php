@@ -2,14 +2,22 @@
 
 use Tests\Support\Container;
 
-function get_field($field, $id = null)
+function get_field($field, $id = null, $format_value = true)
 {
-    return Container::get($field);
+    $value = Container::get($field);
+
+    return (! $format_value && is_string($value))
+        ? $value.' [not formatted]'
+        : $value;
 }
 
-function get_sub_field($field)
+function get_sub_field($field, $format_value = true)
 {
-    return Container::get($field);
+    $value = Container::get($field);
+
+    return (! $format_value && is_string($value))
+        ? $value.' [not formatted]'
+        : $value;
 }
 
 function update_field($field, $value, $id = null)
