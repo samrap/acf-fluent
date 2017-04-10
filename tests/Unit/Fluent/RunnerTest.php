@@ -37,6 +37,23 @@ class RunnerTest extends TestCase
         $this->assertEquals('bar', $this->runner->runGet($builder));
     }
 
+    /**
+     * Ensure that the `format_value` argument can be set to false.
+     *
+     * @test
+     * @see https://www.advancedcustomfields.com/resources/get_field/
+     */
+    public function runnerGetsFieldNotFormatted()
+    {
+        $builder = $this->getFreshBuilder();
+        $builder->field('word')->raw();
+
+        $this->assertEquals(
+            'bar [not formatted]',
+            $this->runner->runGet($builder)
+        );
+    }
+
     /** @test */
     public function runnerUpdatesField()
     {
