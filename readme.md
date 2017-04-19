@@ -224,6 +224,20 @@ $content = Acf::field('wysiwyg')
 
 If the field value is not a string, a `\Samrap\Acf\Exceptions\RunnerException` exception will be thrown.
 
+#### `Samrap\Acf\Fluent\Builder::raw(void)`
+
+When retrieving a field, ACF lets you specify whether or not to format the value from the database. ACF Fluent follows the plugin's convention by formatting the field by default. You may use the builder's `raw` method to retrieve the value from the database unformatted:
+
+```php
+use Samrap\Acf\Acf;
+
+$raw = Acf::field('image')
+            ->raw()
+            ->get();
+```
+
+In this example, the `image` field is never formatted and returned as is from the database.
+
 ### Updating Fields
 
 Though typically less common, you may find yourself updating fields or sub fields from time to time. The fluent builder provides you with the `update` method to do just that:
