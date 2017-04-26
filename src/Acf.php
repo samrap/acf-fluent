@@ -10,6 +10,20 @@ use Samrap\Acf\Behaviors\SubFieldBehavior;
 class Acf
 {
     /**
+     * The class' single instance.
+     *
+     * @var \Samrap\Acf\Acf
+     */
+    private static $instance;
+
+    /**
+     * The behavior instances.
+     *
+     * @var \Samrap\Acf\Behaviors\BehaviorInterface[]
+     */
+    private $behaviors = [];
+
+    /**
      * Private constructor to prevent instantiation.
      *
      * @codeCoverageIgnore The class cannot be instantiated.
@@ -17,6 +31,20 @@ class Acf
     private function __construct()
     {
         //
+    }
+
+    /**
+     * Get the single instance of this object.
+     *
+     * @return \Samrap\Acf\Acf
+     */
+    private static function getInstance()
+    {
+        if (! self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
     /**
@@ -28,7 +56,8 @@ class Acf
      */
     public static function field($name, $id = null)
     {
-        return static::getBuilder(FieldBehavior::class)
+        return self::getInstance()
+                     ->getBuilder(FieldBehavior::class)
                      ->field($name)
                      ->id($id);
     }
@@ -41,7 +70,9 @@ class Acf
      */
     public static function subField($name)
     {
-        return static::getBuilder(SubFieldBehavior::class)->field($name);
+        return self::getInstance()
+                     ->getBuilder(SubFieldBehavior::class)
+                     ->field($name);
     }
 
     /**
@@ -52,7 +83,8 @@ class Acf
      */
     public static function option($name)
     {
-        return static::getBuilder(FieldBehavior::class)
+        return self::getInstance()
+                     ->getBuilder(FieldBehavior::class)
                      ->field($name)
                      ->id('option');
     }
@@ -63,8 +95,13 @@ class Acf
      * @param  string  $behavior
      * @return \Samrap\Acf\Fluent\Builder
      */
-    private static function getBuilder($behavior)
+    private function getBuilder($behavior)
     {
-        return new Builder(new Runner(new $behavior));
+        // Create a new behavior of the given type if one does not yet exist.
+        if (! isset($this->behaviors[$behavior])) {
+            $this->behaviors[$behavior] = new $behavior();
+        }
+
+        return new Builder(new Runner($this->behaviors[$behavior]));
     }
 }

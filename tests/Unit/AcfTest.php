@@ -59,6 +59,26 @@ class AcfTest extends TestCase
     }
 
     /** @test */
+    public function sameBuilderInRunner()
+    {
+        $one = Acf::field('foo');
+        $two = Acf::field('bar');
+        $three = Acf::subField('baz');
+
+        // Make sure that both `field` queries use the same behavior instance...
+        $this->assertSame(
+            $one->getRunner()->getBehavior(),
+            $two->getRunner()->getBehavior()
+        );
+
+        // ...But the `subField` query should have its own behavior.
+        $this->assertNotSame(
+            $one->getRunner()->getBehavior(),
+            $three->getRunner()->getBehavior()
+        );
+    }
+
+    /** @test */
     public function setIdOnFieldMethod()
     {
         $this->assertEquals(2, Acf::field('foo', 2)->id);
