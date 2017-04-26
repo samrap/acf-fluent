@@ -44,7 +44,7 @@ class AcfTest extends TestCase
     }
 
     /** @test */
-    public function optionBuilderUserRunnerWithFieldBehavior()
+    public function optionBuilderUsesRunnerWithFieldBehavior()
     {
         $this->assertInstanceOf(
             FieldBehavior::class,
