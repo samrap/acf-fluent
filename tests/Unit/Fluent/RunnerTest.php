@@ -29,6 +29,25 @@ class RunnerTest extends TestCase
     }
 
     /** @test */
+    public function getsBehavior()
+    {
+        $this->assertInstanceOf(
+            'Samrap\Acf\Behaviors\BehaviorInterface',
+            $this->runner->getBehavior()
+        );
+    }
+
+    /** @test */
+    public function setsBehavior()
+    {
+        $original = $this->runner->getBehavior();
+
+        $this->runner->setBehavior(new BehaviorMock());
+
+        $this->assertNotSame($original, $this->runner->getBehavior());
+    }
+
+    /** @test */
     public function runnerGetsField()
     {
         $builder = $this->getFreshBuilder();

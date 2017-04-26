@@ -50,6 +50,17 @@ class Runner
     }
 
     /**
+     * Set the behavior.
+     *
+     * @param  \Samrap\Acf\Behaviors\BehaviorInterface  $behavior
+     * @return void
+     */
+    public function setBehavior(BehaviorInterface $behavior)
+    {
+        $this->behavior = $behavior;
+    }
+
+    /**
      * Run the ACF 'get' behavior from the given builder.
      *
      * @param  \Samrap\Acf\Fluent\Builder  $builder
