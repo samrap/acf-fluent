@@ -157,6 +157,8 @@ class Builder
     public function shortcodes()
     {
         $this->shortcodes = true;
+
+        return $this;
     }
 
     /*
