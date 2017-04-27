@@ -26,8 +26,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->expect('string');
+        $return = $builder->expect('string');
 
+        $this->assertSame($builder, $return);
         $this->assertEquals('string', $builder->expect);
     }
 
@@ -36,8 +37,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->default('bar');
+        $return = $builder->default('bar');
 
+        $this->assertSame($builder, $return);
         $this->assertEquals('bar', $builder->default);
     }
 
@@ -46,8 +48,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->escape();
+        $return = $builder->escape();
 
+        $this->assertSame($builder, $return);
         $this->assertEquals('esc_html', $builder->escape);
     }
 
@@ -56,8 +59,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->escape('htmlentities');
+        $return = $builder->escape('htmlentities');
 
+        $this->assertSame($builder, $return);
         $this->assertEquals('htmlentities', $builder->escape);
     }
 
@@ -66,8 +70,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->id(2);
+        $return = $builder->id(2);
 
+        $this->assertSame($builder, $return);
         $this->assertEquals(2, $builder->id);
     }
 
@@ -76,8 +81,9 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->shortcodes();
+        $return = $builder->shortcodes();
 
+        $this->assertSame($builder, $return);
         $this->assertTrue($builder->shortcodes);
     }
 
@@ -86,27 +92,10 @@ class BuilderTest extends TestCase
     {
         $builder = new Builder(new RunnerMock);
 
-        $builder->raw();
+        $return = $builder->raw();
 
+        $this->assertSame($builder, $return);
         $this->assertTrue($builder->raw);
-    }
-
-    /** @test */
-    public function fluentBuilder()
-    {
-        $builder = new Builder(new RunnerMock);
-
-        $builder
-            ->field('foo')
-            ->id(2)
-            ->expect('string')
-            ->default('bar')
-            ->escape();
-
-        $this->assertEquals('foo', $builder->field);
-        $this->assertEquals('string', $builder->expect);
-        $this->assertEquals('bar', $builder->default);
-        $this->assertEquals('esc_html', $builder->escape);
     }
 
     /** @test */
