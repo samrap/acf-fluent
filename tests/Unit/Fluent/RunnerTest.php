@@ -2,8 +2,6 @@
 
 use Tests\TestCase;
 use Samrap\Acf\Fluent\Runner;
-use Samrap\Acf\Fluent\Builder;
-use Tests\Support\Mocks\RunnerMock;
 use Tests\Support\Mocks\BehaviorMock;
 
 class RunnerTest extends TestCase
@@ -24,8 +22,6 @@ class RunnerTest extends TestCase
             'empty_array' => [],
             'int_string' => '10',
         ]);
-
-        $this->runner = new Runner(new BehaviorMock);
     }
 
     /** @test */
@@ -33,27 +29,27 @@ class RunnerTest extends TestCase
     {
         $this->assertInstanceOf(
             'Samrap\Acf\Behaviors\BehaviorInterface',
-            $this->runner->getBehavior()
+            $this->getFreshRunner()->getBehavior()
         );
     }
 
     /** @test */
     public function setsBehavior()
     {
-        $original = $this->runner->getBehavior();
+        $original = $this->getFreshRunner()->getBehavior();
 
-        $this->runner->setBehavior(new BehaviorMock());
+        $this->getFreshRunner()->setBehavior(new BehaviorMock());
 
-        $this->assertNotSame($original, $this->runner->getBehavior());
+        $this->assertNotSame($original, $this->getFreshRunner()->getBehavior());
     }
 
     /** @test */
     public function runnerGetsField()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('word');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
 
-        $this->assertEquals('bar', $this->runner->runGet($builder));
+        $this->assertEquals('bar', $this->getFreshRunner()->runGet($builder));
     }
 
     /**
@@ -64,74 +60,81 @@ class RunnerTest extends TestCase
      */
     public function runnerGetsFieldNotFormatted()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('word')->raw();
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
+        $builder->raw = true;
 
         $this->assertEquals(
             'bar [not formatted]',
-            $this->runner->runGet($builder)
+            $this->getFreshRunner()->runGet($builder)
         );
     }
 
     /** @test */
     public function runnerUpdatesField()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('bourbon');
-        $this->runner->runUpdate($builder, 'makers');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'bourbon';
 
-        $this->assertEquals('makers', $this->runner->runGet($builder));
+        $this->getFreshRunner()->runUpdate($builder, 'makers');
+
+        $this->assertEquals('makers', $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function runnerExpectComponentPasses()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('array')->expect('array');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'array';
+        $builder->expect = 'array';
 
-        $this->assertInternalType('array', $this->runner->runGet($builder));
+        $this->assertInternalType('array', $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function runnerExpectComponentFails()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('word')->expect('int');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
+        $builder->expect = 'int';
 
-        $this->assertNull($this->runner->runGet($builder));
+        $this->assertNull($this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function runnerGetsFieldWithEscapeComponent()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('html')->escape();
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'html';
+        $builder->escape = 'esc_html';
 
         $this->assertEquals(
             '&lt;script src=&quot;something-malicious&quot;&gt;&lt;/script&gt;',
-            $this->runner->runGet($builder)
+            $this->getFreshRunner()->runGet($builder)
         );
     }
 
     /** @test */
     public function escapeComponentWithUrlencode()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('sentence')->escape('urlencode');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'sentence';
+        $builder->escape = 'urlencode';
 
         $this->assertEquals(
             'nothing+is+certain+but+death+and+taxes',
-            $this->runner->runGet($builder)
+            $this->getFreshRunner()->runGet($builder)
         );
     }
 
     /** @test */
     public function escapeComponentIsWhitelisted()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('word')->escape('strtoupper');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
+        $builder->escape = 'strtoupper';
 
-        $this->assertEquals('bar', $this->runner->runGet($builder));
+        $this->assertEquals('bar', $this->getFreshRunner()->runGet($builder));
     }
 
     /**
@@ -140,59 +143,62 @@ class RunnerTest extends TestCase
      */
     public function escapeComponentThrowsExceptionForNonString()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('array')->escape();
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'array';
+        $builder->escape = 'esc_html';
 
-        $this->runner->runGet($builder);
+        $this->getFreshRunner()->runGet($builder);
     }
 
     /** @test */
     public function getFieldWithDefaultComponent()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('name')->default('Bonnie');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'name';
+        $builder->default = 'Bonnie';
 
-        $this->assertEquals('Bonnie', $this->runner->runGet($builder));
+        $this->assertEquals('Bonnie', $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function getFieldWithDefaultComponentWhenValueIsEmptyString()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('empty_string')->default('Non-empty string');
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'empty_string';
+        $builder->default = 'Non-empty string';
 
-        $this->assertEquals('Non-empty string', $this->runner->runGet($builder));
+        $this->assertEquals('Non-empty string', $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function getFieldWithDefaultComponentWhenValueIsEmptyArray()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('empty_array')->default(['foo' => 'bar']);
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'empty_array';
+        $builder->default = ['foo' => 'bar'];
 
-        $this->assertEquals(['foo' => 'bar'], $this->runner->runGet($builder));
+        $this->assertEquals(['foo' => 'bar'], $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function getFieldWithMultipleComponents()
     {
-        $builder = $this->getFreshBuilder();
-        $builder->field('word')
-                ->expect('int')
-                ->default(123);
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
+        $builder->expect = 'int';
+        $builder->default = 123;
 
-        $this->assertEquals(123, $this->runner->runGet($builder));
+        $this->assertEquals(123, $this->getFreshRunner()->runGet($builder));
     }
 
     /** @test */
     public function doShortcodesOnField()
     {
-        $builder = $this->getFreshBuilder();
-        $builder
-            ->field('word')
-            ->shortcodes();
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'word';
+        $builder->shortcodes = true;
 
-        $this->assertEquals('shortcode bar', $this->runner->runGet($builder));
+        $this->assertEquals('shortcode bar', $this->getFreshRunner()->runGet($builder));
     }
 
     /**
@@ -201,21 +207,20 @@ class RunnerTest extends TestCase
      */
     public function doShortcodesOnNonStringFieldThrowsException()
     {
-        $builder = $this->getFreshBuilder();
-        $builder
-            ->field('array')
-            ->shortcodes();
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'array';
+        $builder->shortcodes = true;
 
-        $this->runner->runGet($builder);
+        $this->getFreshRunner()->runGet($builder);
     }
 
     /**
-     * Get a fresh builder to work with.
+     * Get a fresh runner instance for testing.
      *
-     * @return \Samrap\Acf\Fluent\Builder
+     * @return \Samrap\Acf\Fluent\Runner
      */
-    protected function getFreshBuilder()
+    protected function getFreshRunner()
     {
-        return new Builder(new RunnerMock);
+        return new Runner(new BehaviorMock);
     }
 }
