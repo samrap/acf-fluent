@@ -6,92 +6,115 @@ use Tests\Support\Mocks\RunnerMock;
 
 class BuilderTest extends TestCase
 {
-    /** @var \Samrap\Acf\Fluent\Builder */
-    protected $builder;
-
     public function setUp()
     {
         $this->setFields(['foo' => 'bar']);
-
-        $this->builder = new Builder(new RunnerMock);
     }
 
     /** @test */
     public function setField()
     {
-        $this->builder->field('foo');
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('foo', $this->builder->field);
+        $builder->field('foo');
+
+        $this->assertEquals('foo', $builder->field);
     }
 
     /** @test */
     public function setExpect()
     {
-        $this->builder->expect('string');
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('string', $this->builder->expect);
+        $builder->expect('string');
+
+        $this->assertEquals('string', $builder->expect);
     }
 
     /** @test */
     public function setDefault()
     {
-        $this->builder->default('bar');
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('bar', $this->builder->default);
+        $builder->default('bar');
+
+        $this->assertEquals('bar', $builder->default);
     }
 
     /** @test */
     public function setEscape()
     {
-        $this->builder->escape();
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('esc_html', $this->builder->escape);
+        $builder->escape();
+
+        $this->assertEquals('esc_html', $builder->escape);
     }
 
     /** @test */
     public function setEscapeAllowsCustomFunction()
     {
-        $this->builder->escape('htmlentities');
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('htmlentities', $this->builder->escape);
+        $builder->escape('htmlentities');
+
+        $this->assertEquals('htmlentities', $builder->escape);
     }
 
     /** @test */
     public function setId()
     {
-        $this->builder->id(2);
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals(2, $this->builder->id);
+        $builder->id(2);
+
+        $this->assertEquals(2, $builder->id);
+    }
+
+    /** @test */
+    public function setShortcodes()
+    {
+        $builder = new Builder(new RunnerMock);
+
+        $builder->shortcodes();
+
+        $this->assertTrue($builder->shortcodes);
     }
 
     /** @test */
     public function setRaw()
     {
-        $this->builder->raw();
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertTrue($this->builder->raw);
+        $builder->raw();
+
+        $this->assertTrue($builder->raw);
     }
 
     /** @test */
     public function fluentBuilder()
     {
-        $this->builder
+        $builder = new Builder(new RunnerMock);
+
+        $builder
             ->field('foo')
             ->id(2)
             ->expect('string')
             ->default('bar')
             ->escape();
 
-        $this->assertEquals('foo', $this->builder->field);
-        $this->assertEquals('string', $this->builder->expect);
-        $this->assertEquals('bar', $this->builder->default);
-        $this->assertEquals('esc_html', $this->builder->escape);
+        $this->assertEquals('foo', $builder->field);
+        $this->assertEquals('string', $builder->expect);
+        $this->assertEquals('bar', $builder->default);
+        $this->assertEquals('esc_html', $builder->escape);
     }
 
     /** @test */
     public function builderGet()
     {
-        $this->assertEquals('bar', $this->builder->field('foo')->get());
+        $builder = new Builder(new RunnerMock);
+
+        $this->assertEquals('bar', $builder->field('foo')->get());
     }
 
     /**
@@ -100,14 +123,18 @@ class BuilderTest extends TestCase
      */
     public function builderGetThrowsExceptionIfFieldNotSet()
     {
-        $this->builder->get();
+        $builder = new Builder(new RunnerMock);
+
+        $builder->get();
     }
 
     /** @test */
     public function builderUpdate()
     {
-        $this->builder->field('foo')->update('fiz');
+        $builder = new Builder(new RunnerMock);
 
-        $this->assertEquals('fiz', $this->builder->field('foo')->get());
+        $builder->field('foo')->update('fiz');
+
+        $this->assertEquals('fiz', $builder->field('foo')->get());
     }
 }

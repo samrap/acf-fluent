@@ -44,7 +44,7 @@ class AcfTest extends TestCase
     }
 
     /** @test */
-    public function optionBuilderUserRunnerWithFieldBehavior()
+    public function optionBuilderUsesRunnerWithFieldBehavior()
     {
         $this->assertInstanceOf(
             FieldBehavior::class,
@@ -56,6 +56,26 @@ class AcfTest extends TestCase
     public function optionBuilderUsesOptionPost()
     {
         $this->assertEquals('option', Acf::option('foo')->id);
+    }
+
+    /** @test */
+    public function sameBuilderInRunner()
+    {
+        $one = Acf::field('foo');
+        $two = Acf::field('bar');
+        $three = Acf::subField('baz');
+
+        // Make sure that both `field` queries use the same behavior instance...
+        $this->assertSame(
+            $one->getRunner()->getBehavior(),
+            $two->getRunner()->getBehavior()
+        );
+
+        // ...But the `subField` query should have its own behavior.
+        $this->assertNotSame(
+            $one->getRunner()->getBehavior(),
+            $three->getRunner()->getBehavior()
+        );
     }
 
     /** @test */

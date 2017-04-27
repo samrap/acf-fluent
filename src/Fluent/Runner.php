@@ -25,6 +25,7 @@ class Runner
     protected $components = [
         'expect',
         'default',
+        'shortcodes',
         'escape',
     ];
 
@@ -46,6 +47,17 @@ class Runner
     public function getBehavior()
     {
         return $this->behavior;
+    }
+
+    /**
+     * Set the behavior.
+     *
+     * @param  \Samrap\Acf\Behaviors\BehaviorInterface  $behavior
+     * @return void
+     */
+    public function setBehavior(BehaviorInterface $behavior)
+    {
+        $this->behavior = $behavior;
     }
 
     /**
@@ -144,5 +156,23 @@ class Runner
         return (in_array($func, $whitelist))
             ? call_user_func($func, $value)
             : $value;
+    }
+
+    /**
+     * Do shortcodes on the given value.
+     *
+     * @param  bool  $_
+     * @param  mixed  $value
+     * @return mixed
+     */
+    protected function runShortcodes($_, $value)
+    {
+        if (! is_string($value)) {
+            throw new RunnerException(
+                'Cannot do shortcode on value of type '.gettype($value)
+            );
+        }
+
+        return do_shortcode($value);
     }
 }

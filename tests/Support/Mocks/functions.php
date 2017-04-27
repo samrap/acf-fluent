@@ -54,3 +54,8 @@ function esc_textarea($text)
 {
     return $text;
 }
+
+function do_shortcode($shortcode)
+{
+    return 'shortcode '.$shortcode;
+}

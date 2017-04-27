@@ -50,6 +50,13 @@ class Builder
     public $escape;
 
     /**
+     * Whether or not to do shortcodes.
+     *
+     * @var bool
+     */
+    public $shortcodes;
+
+    /*
      * Get the field raw (unformatted).
      *
      * @var bool
@@ -143,6 +150,16 @@ class Builder
     }
 
     /**
+     * Set the shortcodes component.
+     *
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function shortcodes()
+    {
+        $this->shortcodes = true;
+    }
+
+    /*
      * Set the raw component.
      *
      * @return \Samrap\Acf\Fluent\Builder
