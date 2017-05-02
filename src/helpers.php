@@ -4,7 +4,7 @@ use Samrap\Acf\Acf;
 
 if (! function_exists('fluent_field')) {
     /**
-     * Return a new builder instance for a field call.
+     * Return a new builder instance for a field.
      *
      * @param  string  $name
      * @param  int  $id
@@ -18,7 +18,7 @@ if (! function_exists('fluent_field')) {
 
 if (! function_exists('fluent_sub_field')) {
     /**
-     * Return a new builder instance for a subfield call.
+     * Return a new builder instance for a subfield.
      *
      * @param  string  $name
      * @return \Samrap\Acf\Fluent\Builder
@@ -31,7 +31,7 @@ if (! function_exists('fluent_sub_field')) {
 
 if (! function_exists('fluent_option')) {
     /**
-     * Return a new builder instance for an option field call.
+     * Return a new builder instance for an option field.
      *
      * @param  string  $name
      * @return \Samrap\Acf\Fluent\Builder
