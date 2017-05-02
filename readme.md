@@ -1,13 +1,15 @@
-![ACF Fluent](http://i.imgur.com/nrXtc1e.png)
+<p align="center">
+<img src="http://i.imgur.com/nrXtc1e.png" width="300px" />
+</p>
 
-# ACF Fluent
-
-[![StyleCI](https://styleci.io/repos/82142588/shield?branch=master)](https://styleci.io/repos/82142588)
+<p align="center">
 [![Travis branch](https://img.shields.io/travis/samrap/acf-fluent/master.svg?style=flat-square)]()
+[![Packagist](https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square)](https://packagist.org/packages/samrap/acf-fluent)
 [![GitHub issues](https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square)](https://github.com/samrap/acf-fluent/issues)
-[![Twitter](https://img.shields.io/twitter/url/http/github.com/samrap/acf-fluent.svg?style=social&style=flat-square)](https://twitter.com/intent/tweet?text=A+fluent+interface+for+the+Advanced+Custom+Fields+%23WordPress+plugin:&url=https%3A%2F%2Fgithub.com%2Fsamrap%2Facf-fluent)
+[![license](https://img.shields.io/github/license/samrap/acf-fluent.svg?style=flat-square)]()
 
 A [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin.
+</p>
 
 ### Why?
 
@@ -212,12 +214,12 @@ The current supported functions for the `escape` method are:
 
 #### `Samrap\Acf\Fluent\Builder::shortcodes(void)`
 
-You may have a textarea or WYSIWYG field in which you wish to support shortcodes. You could pass the retreived value through the `do_shortcode` function, but with ACF Fluent there is a better way. The `shortcodes` method will instruct ACF Fluent to call the WordPress `do_shortcode` function on the retrieved value automatically:
+ACF already does shortcodes by default with the WYSIWYG field type. However, you may have an alternative field type such as a textarea in which you wish to support shortcodes as well. You could pass the retreived value through the `do_shortcode` function, but with ACF Fluent there is a better way. The `shortcodes` method will instruct ACF Fluent to call the WordPress `do_shortcode` function on the retrieved value automatically:
 
 ```php
 use Samrap\Acf\Acf;
 
-$content = Acf::field('wysiwyg')
+$content = Acf::field('my_textarea')
               ->shortcodes()
               ->get();
 ```
@@ -232,8 +234,8 @@ When retrieving a field, ACF lets you specify whether or not to format the value
 use Samrap\Acf\Acf;
 
 $raw = Acf::field('image')
-            ->raw()
-            ->get();
+          ->raw()
+          ->get();
 ```
 
 In this example, the `image` field is never formatted and returned as is from the database.
