@@ -7,9 +7,11 @@
 <a href="https://packagist.org/packages/samrap/acf-fluent"><img src="https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square" alt="Packagist Version" /></a>
 <a href="https://github.com/samrap/acf-fluent/issues"><img src="https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square" alt="Open Issues" /></a>
 <a href="#"><img src="https://img.shields.io/github/license/samrap/acf-fluent.svg?style=flat-square" alt="MIT License" /></a>
-
-A [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin.
 </p>
+
+### What is ACF Fluent?
+
+ACF Fluent is a [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin. It provides the usage of custom field "queries" in an expressive, fluent interface that makes templating with ACF a breeze.
 
 ### Why?
 
