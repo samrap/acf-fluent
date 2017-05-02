@@ -11,7 +11,7 @@
 
 ### What is ACF Fluent?
 
-ACF Fluent is a [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin. It provides the usage of custom field "queries" in an expressive, fluent interface that makes templating with ACF a breeze.
+ACF Fluent is a [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin. It enables theme developers to create custom field "queries" using an expressive, fluent interface that makes templating with ACF a breeze.
 
 ### Why?
 
