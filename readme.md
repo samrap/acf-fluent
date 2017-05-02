@@ -1,12 +1,12 @@
 <p align="center">
-<img src="http://i.imgur.com/nrXtc1e.png" width="300px" />
+<img src="http://i.imgur.com/nrXtc1e.png" width="350px" />
 </p>
 
 <p align="center">
-[![Travis branch](https://img.shields.io/travis/samrap/acf-fluent/master.svg?style=flat-square)]()
-[![Packagist](https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square)](https://packagist.org/packages/samrap/acf-fluent)
-[![GitHub issues](https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square)](https://github.com/samrap/acf-fluent/issues)
-[![license](https://img.shields.io/github/license/samrap/acf-fluent.svg?style=flat-square)]()
+<a href="#"><img src="https://img.shields.io/travis/samrap/acf-fluent/master.svg?style=flat-square" alt="Build Status" /></a>
+<a href="https://packagist.org/packages/samrap/acf-fluent"><img src="https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square" alt="Packagist Version" /></a>
+<a href="https://github.com/samrap/acf-fluent/issues"><img src="https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square" alt="Open Issues" /></a>
+<a href="#"><img src="https://img.shields.io/github/license/samrap/acf-fluent.svg?style=flat-square" alt="MIT License" /></a>
 
 A [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for the Advanced Custom Fields WordPress plugin.
 </p>
