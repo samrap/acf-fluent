@@ -4,8 +4,8 @@
 
 <p align="center">
 <a href="#"><img src="https://img.shields.io/travis/samrap/acf-fluent/master.svg?style=flat-square" alt="Build Status" /></a>
-<a href="https://packagist.org/packages/samrap/acf-fluent"><img src="https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square" alt="Packagist Version" /></a>
 <a href="https://github.com/samrap/acf-fluent/issues"><img src="https://img.shields.io/github/issues/samrap/acf-fluent.svg?style=flat-square" alt="Open Issues" /></a>
+<a href="https://packagist.org/packages/samrap/acf-fluent"><img src="https://img.shields.io/packagist/v/samrap/acf-fluent.svg?style=flat-square" alt="Packagist Version" /></a>
 <a href="#"><img src="https://img.shields.io/github/license/samrap/acf-fluent.svg?style=flat-square" alt="MIT License" /></a>
 </p>
 
