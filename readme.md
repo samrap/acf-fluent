@@ -63,7 +63,7 @@ Interested? ACF Fluent packs a lot more features and has **no** dependencies. [C
 
 ### Contributing
 
-ACF Fluent is still in its early stages. Issues, PRs, and enhancement ideas are _highly_ encouraged and appreciated.
+ACF Fluent is still in its early stages. Issues, PRs, and enhancement ideas are encouraged and appreciated.
 
 ---
 
