@@ -133,7 +133,7 @@ class Runner
     /**
      * Escape the value with the given function.
      *
-     * @param  string  $func
+     * @param  callable  $func
      * @param  string  $value
      * @return string
      */

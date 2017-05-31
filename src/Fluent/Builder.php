@@ -138,7 +138,7 @@ class Builder
     /**
      * Set the escape component.
      *
-     * @param  string  $func
+     * @param  callable  $func
      * @return \Samrap\Acf\Fluent\Builder
      */
     public function escape($func = 'esc_html')
