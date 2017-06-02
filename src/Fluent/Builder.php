@@ -184,7 +184,7 @@ class Builder
             throw new BuilderException('Cannot get a null field.');
         }
 
-        return $this->runner->runGet($this);
+        return $this->runner->get($this);
     }
 
     /**
@@ -195,6 +195,6 @@ class Builder
      */
     public function update($value)
     {
-        return $this->runner->runUpdate($this, $value);
+        return $this->runner->update($this, $value);
     }
 }

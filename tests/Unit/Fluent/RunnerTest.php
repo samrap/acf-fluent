@@ -49,7 +49,7 @@ class RunnerTest extends TestCase
         $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
         $builder->field = 'word';
 
-        $this->assertEquals('bar', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('bar', $this->getFreshRunner()->get($builder));
     }
 
     /**
@@ -66,7 +66,7 @@ class RunnerTest extends TestCase
 
         $this->assertEquals(
             'bar [not formatted]',
-            $this->getFreshRunner()->runGet($builder)
+            $this->getFreshRunner()->get($builder)
         );
     }
 
@@ -76,9 +76,9 @@ class RunnerTest extends TestCase
         $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
         $builder->field = 'bourbon';
 
-        $this->getFreshRunner()->runUpdate($builder, 'makers');
+        $this->getFreshRunner()->update($builder, 'makers');
 
-        $this->assertEquals('makers', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('makers', $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -88,7 +88,7 @@ class RunnerTest extends TestCase
         $builder->field = 'array';
         $builder->expect = 'array';
 
-        $this->assertInternalType('array', $this->getFreshRunner()->runGet($builder));
+        $this->assertInternalType('array', $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -98,7 +98,7 @@ class RunnerTest extends TestCase
         $builder->field = 'word';
         $builder->expect = 'int';
 
-        $this->assertNull($this->getFreshRunner()->runGet($builder));
+        $this->assertNull($this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -110,7 +110,7 @@ class RunnerTest extends TestCase
 
         $this->assertEquals(
             '&lt;script src=&quot;something-malicious&quot;&gt;&lt;/script&gt;',
-            $this->getFreshRunner()->runGet($builder)
+            $this->getFreshRunner()->get($builder)
         );
     }
 
@@ -123,7 +123,7 @@ class RunnerTest extends TestCase
 
         $this->assertEquals(
             'nothing+is+certain+but+death+and+taxes',
-            $this->getFreshRunner()->runGet($builder)
+            $this->getFreshRunner()->get($builder)
         );
     }
 
@@ -134,7 +134,7 @@ class RunnerTest extends TestCase
         $builder->field = 'word';
         $builder->escape = 'strtoupper';
 
-        $this->assertEquals('bar', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('bar', $this->getFreshRunner()->get($builder));
     }
 
     /**
@@ -147,7 +147,7 @@ class RunnerTest extends TestCase
         $builder->field = 'array';
         $builder->escape = 'esc_html';
 
-        $this->getFreshRunner()->runGet($builder);
+        $this->getFreshRunner()->get($builder);
     }
 
     /** @test */
@@ -157,7 +157,7 @@ class RunnerTest extends TestCase
         $builder->field = 'name';
         $builder->default = 'Bonnie';
 
-        $this->assertEquals('Bonnie', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('Bonnie', $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -167,7 +167,7 @@ class RunnerTest extends TestCase
         $builder->field = 'empty_string';
         $builder->default = 'Non-empty string';
 
-        $this->assertEquals('Non-empty string', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('Non-empty string', $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -177,7 +177,7 @@ class RunnerTest extends TestCase
         $builder->field = 'empty_array';
         $builder->default = ['foo' => 'bar'];
 
-        $this->assertEquals(['foo' => 'bar'], $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals(['foo' => 'bar'], $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -188,7 +188,7 @@ class RunnerTest extends TestCase
         $builder->expect = 'int';
         $builder->default = 123;
 
-        $this->assertEquals(123, $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals(123, $this->getFreshRunner()->get($builder));
     }
 
     /** @test */
@@ -198,7 +198,7 @@ class RunnerTest extends TestCase
         $builder->field = 'word';
         $builder->shortcodes = true;
 
-        $this->assertEquals('shortcode bar', $this->getFreshRunner()->runGet($builder));
+        $this->assertEquals('shortcode bar', $this->getFreshRunner()->get($builder));
     }
 
     /**
@@ -211,7 +211,7 @@ class RunnerTest extends TestCase
         $builder->field = 'array';
         $builder->shortcodes = true;
 
-        $this->getFreshRunner()->runGet($builder);
+        $this->getFreshRunner()->get($builder);
     }
 
     /**

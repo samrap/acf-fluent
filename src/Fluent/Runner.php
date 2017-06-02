@@ -66,7 +66,7 @@ class Runner
      * @param  \Samrap\Acf\Fluent\Builder  $builder
      * @return mixed
      */
-    public function runGet(Builder $builder)
+    public function get(Builder $builder)
     {
         // First, we will retrieve the field's value using our composed behavior.
         $value = $this->behavior->get(
@@ -95,7 +95,7 @@ class Runner
      * @param  mixed  $value
      * @return void
      */
-    public function runUpdate(Builder $builder, $value)
+    public function update(Builder $builder, $value)
     {
         $this->behavior->update($builder->field, $value, $builder->id);
     }
