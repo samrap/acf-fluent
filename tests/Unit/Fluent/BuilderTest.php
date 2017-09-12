@@ -99,6 +99,17 @@ class BuilderTest extends TestCase
     }
 
     /** @test */
+    public function setMatch()
+    {
+        $builder = new Builder(new RunnerMock);
+
+        $return = $builder->matches('/(regex)/');
+
+        $this->assertSame($builder, $return);
+        $this->assertEquals('/(regex)/', $builder->matches);
+    }
+
+    /** @test */
     public function builderGet()
     {
         $builder = new Builder(new RunnerMock);

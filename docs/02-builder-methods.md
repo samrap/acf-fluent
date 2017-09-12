@@ -107,6 +107,20 @@ $content = Acf::field('my_textarea')
 
 If the field value is not a string, a `\Samrap\Acf\Exceptions\RunnerException` exception will be thrown.
 
+#### `Samrap\Acf\Fluent\Builder::matches(string $regex)`
+
+The value must match given `$regex` string:
+
+```php
+use Samrap\Acf\Acf;
+
+$field = Acf::field('quote')
+            ->matches('/death|taxes/')
+            ->get();
+```
+
+In the above example, the quote _"Nothing is certain but death and taxes."_ would pass. 
+
 #### `Samrap\Acf\Fluent\Builder::raw(void)`
 
 When retrieving a field, ACF lets you specify whether or not to format the value from the database. ACF Fluent follows the plugin's convention by formatting the field by default. You may use the builder's `raw` method to retrieve the value from the database unformatted:

@@ -64,6 +64,13 @@ class Builder
     public $raw = false;
 
     /**
+     * The regular expression that the field's value must match.
+     *
+     * @var string
+     */
+    public $matches;
+
+    /**
      * Create a new Builder instance.
      *
      * @param  \Samrap\Acf\Fluent\Runner  $runner
@@ -169,6 +176,19 @@ class Builder
     public function raw()
     {
         $this->raw = true;
+
+        return $this;
+    }
+
+    /**
+     * Set the matches component.
+     *
+     * @param  string  $pattern
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function matches($pattern)
+    {
+        $this->matches = $pattern;
 
         return $this;
     }

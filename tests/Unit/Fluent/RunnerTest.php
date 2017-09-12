@@ -214,6 +214,29 @@ class RunnerTest extends TestCase
         $this->getFreshRunner()->get($builder);
     }
 
+    /** @test */
+    public function fieldPassesRegexMatch()
+    {
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'sentence';
+        $builder->matches = '/death|taxes/';
+
+        $this->assertEquals(
+            'nothing is certain but death and taxes',
+            $this->getFreshRunner()->get($builder)
+        );
+    }
+
+    /** @test */
+    public function fieldFailsRegexMatch()
+    {
+        $builder = $this->createMock('Samrap\Acf\Fluent\Builder');
+        $builder->field = 'sentence';
+        $builder->matches = '/wealth/';
+
+        $this->assertNull($this->getFreshRunner()->get($builder));
+    }
+
     /**
      * Get a fresh runner instance for testing.
      *

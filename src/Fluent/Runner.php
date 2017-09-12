@@ -24,6 +24,7 @@ class Runner
      */
     protected $components = [
         'expect',
+        'matches',
         'default',
         'shortcodes',
         'escape',
@@ -110,6 +111,18 @@ class Runner
     protected function runExpect($expected, $value)
     {
         return (gettype($value) === $expected) ? $value : null;
+    }
+
+    /**
+     * Check that the value matches the given pattern.
+     *
+     * @param  string  $pattern
+     * @param  string  $value
+     * @return mixed
+     */
+    protected function runMatches($pattern, $value)
+    {
+        return preg_match($pattern, $value) ? $value : null;
     }
 
     /**
