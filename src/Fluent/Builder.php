@@ -14,6 +14,13 @@ class Builder
     protected $runner;
 
     /**
+     * An array of functions callable as methods of this class.
+     *
+     * @var array
+     */
+    protected $macros;
+
+    /**
      * The field name or key to build off of.
      *
      * @var string
@@ -75,9 +82,10 @@ class Builder
      *
      * @param  \Samrap\Acf\Fluent\Runner  $runner
      */
-    public function __construct(Runner $runner)
+    public function __construct(Runner $runner, array $macros = [])
     {
         $this->runner = $runner;
+        $this->macros = $macros;
     }
 
     /**
@@ -216,5 +224,21 @@ class Builder
     public function update($value)
     {
         return $this->runner->update($this, $value);
+    }
+
+    /**
+     * Call a macro if it exists.
+     *
+     * @param  string  $name
+     * @param  array  $arguments
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function __call($name, $arguments)
+    {
+        if (isset($this->macros[$name])) {
+            $this->macros[$name]($this, ...$arguments);
+        }
+
+        return $this;
     }
 }

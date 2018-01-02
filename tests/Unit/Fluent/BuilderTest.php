@@ -110,6 +110,22 @@ class BuilderTest extends TestCase
     }
 
     /** @test */
+    public function applyMacro()
+    {
+        $builder = new Builder(new RunnerMock, [
+            'imageArray' => function (Builder $builder, $a, $b) {
+                $builder
+                    ->expect('array')
+                    ->default(['url' => 'default-image.jpg']);
+            },
+        ]);
+        $builder->imageArray('hi', 12);
+
+        $this->assertEquals('array', $builder->expect);
+        $this->assertEquals(['url' => 'default-image.jpg'], $builder->default);
+    }
+
+    /** @test */
     public function builderGet()
     {
         $builder = new Builder(new RunnerMock);
