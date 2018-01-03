@@ -27,7 +27,7 @@ As you know, we can use ACF Fluent to clean this up a bit:
 
 This is nice, but can get a bit cumbersome to retype every single time we need to loop over a repeater field. ACF Macros allow you to chain together existing methods into one single method that can be called on the builder.
 
-First, define the Macro statically on the `Acf` object (this should be done upon setup, like in `functions.php`:
+First, define the Macro statically on the `Acf` object (this should be done upon setup, like in `functions.php`):
 
 ```php
 use Samrap\Acf\Acf;
