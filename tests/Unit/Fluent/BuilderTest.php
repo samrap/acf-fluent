@@ -126,6 +126,16 @@ class BuilderTest extends TestCase
         $this->assertEquals(['url' => 'default-image.jpg'], $builder->default);
     }
 
+    /**
+     * @test
+     * @expectedException \BadMethodCallException
+     */
+    public function throwMethodNotFoundExceptionIfMacroDoesntExist()
+    {
+        $builder = new Builder(new RunnerMock);
+        $builder->nope();
+    }
+
     /** @test */
     public function builderGet()
     {

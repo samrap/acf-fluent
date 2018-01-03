@@ -2,6 +2,7 @@
 
 namespace Samrap\Acf\Fluent;
 
+use BadMethodCallException;
 use Samrap\Acf\Exceptions\BuilderException;
 
 class Builder
@@ -235,9 +236,13 @@ class Builder
      */
     public function __call($name, $arguments)
     {
-        if (isset($this->macros[$name])) {
-            $this->macros[$name]($this, ...$arguments);
+        if (! isset($this->macros[$name])) {
+            throw new BadMethodCallException;(
+                "The method or macro {$name} does not exist."
+            );
         }
+
+        $this->macros[$name]($this, ...$arguments);
 
         return $this;
     }
