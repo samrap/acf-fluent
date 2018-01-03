@@ -121,9 +121,6 @@ class Acf
             $this->behaviors[$behavior] = new $behavior();
         }
 
-        return new Builder(
-            new Runner($this->behaviors[$behavior]),
-            self::getInstance()->macros
-        );
+        return new Builder(new Runner($this->behaviors[$behavior]), $this->macros);
     }
 }
