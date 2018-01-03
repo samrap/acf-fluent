@@ -119,8 +119,9 @@ class BuilderTest extends TestCase
                     ->default(['url' => 'default-image.jpg']);
             },
         ]);
-        $builder->imageArray('hi', 12);
+        $return = $builder->imageArray('hi', 12);
 
+        $this->assertSame($builder, $return);
         $this->assertEquals('array', $builder->expect);
         $this->assertEquals(['url' => 'default-image.jpg'], $builder->default);
     }
