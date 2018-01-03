@@ -237,7 +237,7 @@ class Builder
     public function __call($name, $arguments)
     {
         if (! isset($this->macros[$name])) {
-            throw new BadMethodCallException;(
+            throw new BadMethodCallException(
                 "The method or macro {$name} does not exist."
             );
         }
