@@ -60,6 +60,7 @@ Interested? ACF Fluent packs a lot more features and has **no** dependencies. [C
 - [Basic Usage](docs/01-basic-usage.md)
 - [Builder Methods](docs/02-builder-methods.md)
 - [Updating Fields](docs/03-updating-fields.md)
+- [Macros](docs/04-macros.md)
 
 ### Contributing
 
