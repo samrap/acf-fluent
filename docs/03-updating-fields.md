@@ -10,4 +10,4 @@ Acf::subField('content')
    ->update('Nothing is certain but death and taxes.');
 ```
 
-&larr; [Builder Methods](02-builder-methods.md)
+&larr; [Builder Methods](02-builder-methods.md) | [Macros](04-macros.md) &rarr;

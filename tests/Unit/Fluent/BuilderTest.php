@@ -99,6 +99,44 @@ class BuilderTest extends TestCase
     }
 
     /** @test */
+    public function setMatch()
+    {
+        $builder = new Builder(new RunnerMock);
+
+        $return = $builder->matches('/(regex)/');
+
+        $this->assertSame($builder, $return);
+        $this->assertEquals('/(regex)/', $builder->matches);
+    }
+
+    /** @test */
+    public function applyMacro()
+    {
+        $builder = new Builder(new RunnerMock, [
+            'imageArray' => function (Builder $builder, $a, $b) {
+                $builder
+                    ->expect('array')
+                    ->default(['url' => 'default-image.jpg']);
+            },
+        ]);
+        $return = $builder->imageArray('hi', 12);
+
+        $this->assertSame($builder, $return);
+        $this->assertEquals('array', $builder->expect);
+        $this->assertEquals(['url' => 'default-image.jpg'], $builder->default);
+    }
+
+    /**
+     * @test
+     * @expectedException \BadMethodCallException
+     */
+    public function throwMethodNotFoundExceptionIfMacroDoesntExist()
+    {
+        $builder = new Builder(new RunnerMock);
+        $builder->nope();
+    }
+
+    /** @test */
     public function builderGet()
     {
         $builder = new Builder(new RunnerMock);

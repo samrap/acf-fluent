@@ -94,4 +94,18 @@ class AcfTest extends TestCase
 
         $this->assertEquals('Hello World', $value);
     }
+
+    /** @test */
+    public function macrosApplyToBuilder()
+    {
+        Acf::macro('imageArray', function (Builder $builder) {
+            $builder
+                ->expect('array')
+                ->default(['url' => 'default-image.jpg']);
+        });
+        $builder = Acf::field('foo')->imageArray();
+
+        $this->assertEquals('array', $builder->expect);
+        $this->assertEquals(['url' => 'default-image.jpg'], $builder->default);
+    }
 }

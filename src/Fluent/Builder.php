@@ -2,6 +2,7 @@
 
 namespace Samrap\Acf\Fluent;
 
+use BadMethodCallException;
 use Samrap\Acf\Exceptions\BuilderException;
 
 class Builder
@@ -12,6 +13,13 @@ class Builder
      * @var \Samrap\Acf\Fluent\Runner
      */
     protected $runner;
+
+    /**
+     * An array of functions callable as methods of this class.
+     *
+     * @var array
+     */
+    protected $macros;
 
     /**
      * The field name or key to build off of.
@@ -64,13 +72,21 @@ class Builder
     public $raw = false;
 
     /**
+     * The regular expression that the field's value must match.
+     *
+     * @var string
+     */
+    public $matches;
+
+    /**
      * Create a new Builder instance.
      *
      * @param  \Samrap\Acf\Fluent\Runner  $runner
      */
-    public function __construct(Runner $runner)
+    public function __construct(Runner $runner, array $macros = [])
     {
         $this->runner = $runner;
+        $this->macros = $macros;
     }
 
     /**
@@ -138,7 +154,7 @@ class Builder
     /**
      * Set the escape component.
      *
-     * @param  string  $func
+     * @param  callable  $func
      * @return \Samrap\Acf\Fluent\Builder
      */
     public function escape($func = 'esc_html')
@@ -174,6 +190,19 @@ class Builder
     }
 
     /**
+     * Set the matches component.
+     *
+     * @param  string  $pattern
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function matches($pattern)
+    {
+        $this->matches = $pattern;
+
+        return $this;
+    }
+
+    /**
      * Pass the builder to the runner's get method.
      *
      * @return mixed
@@ -184,7 +213,7 @@ class Builder
             throw new BuilderException('Cannot get a null field.');
         }
 
-        return $this->runner->runGet($this);
+        return $this->runner->get($this);
     }
 
     /**
@@ -195,6 +224,26 @@ class Builder
      */
     public function update($value)
     {
-        return $this->runner->runUpdate($this, $value);
+        return $this->runner->update($this, $value);
+    }
+
+    /**
+     * Call a macro if it exists.
+     *
+     * @param  string  $name
+     * @param  array  $arguments
+     * @return \Samrap\Acf\Fluent\Builder
+     */
+    public function __call($name, $arguments)
+    {
+        if (! isset($this->macros[$name])) {
+            throw new BadMethodCallException(
+                "The method or macro {$name} does not exist."
+            );
+        }
+
+        $this->macros[$name]($this, ...$arguments);
+
+        return $this;
     }
 }

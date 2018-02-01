@@ -24,6 +24,7 @@ class Runner
      */
     protected $components = [
         'expect',
+        'matches',
         'default',
         'shortcodes',
         'escape',
@@ -66,7 +67,7 @@ class Runner
      * @param  \Samrap\Acf\Fluent\Builder  $builder
      * @return mixed
      */
-    public function runGet(Builder $builder)
+    public function get(Builder $builder)
     {
         // First, we will retrieve the field's value using our composed behavior.
         $value = $this->behavior->get(
@@ -95,7 +96,7 @@ class Runner
      * @param  mixed  $value
      * @return void
      */
-    public function runUpdate(Builder $builder, $value)
+    public function update(Builder $builder, $value)
     {
         $this->behavior->update($builder->field, $value, $builder->id);
     }
@@ -110,6 +111,18 @@ class Runner
     protected function runExpect($expected, $value)
     {
         return (gettype($value) === $expected) ? $value : null;
+    }
+
+    /**
+     * Check that the value matches the given pattern.
+     *
+     * @param  string  $pattern
+     * @param  string  $value
+     * @return mixed
+     */
+    protected function runMatches($pattern, $value)
+    {
+        return preg_match($pattern, $value) ? $value : null;
     }
 
     /**
@@ -133,7 +146,7 @@ class Runner
     /**
      * Escape the value with the given function.
      *
-     * @param  string  $func
+     * @param  callable  $func
      * @param  string  $value
      * @return string
      */

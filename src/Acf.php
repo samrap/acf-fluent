@@ -24,6 +24,13 @@ class Acf
     private $behaviors = [];
 
     /**
+     * The available macros defined.
+     *
+     * @var array
+     */
+    private $macros = [];
+
+    /**
      * Private constructor to prevent instantiation.
      *
      * @codeCoverageIgnore The class cannot be instantiated.
@@ -90,6 +97,18 @@ class Acf
     }
 
     /**
+     * Add a macro to the ACF builder.
+     *
+     * @param  string  $method
+     * @param  callable  $operation
+     * @return void
+     */
+    public static function macro($method, $operation)
+    {
+        self::getInstance()->macros[$method] = $operation;
+    }
+
+    /**
      * Return a builder instance with the given behavior.
      *
      * @param  string  $behavior
@@ -102,6 +121,6 @@ class Acf
             $this->behaviors[$behavior] = new $behavior();
         }
 
-        return new Builder(new Runner($this->behaviors[$behavior]));
+        return new Builder(new Runner($this->behaviors[$behavior]), $this->macros);
     }
 }
