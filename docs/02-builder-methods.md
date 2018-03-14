@@ -1,10 +1,11 @@
 # Builder Methods
 
-The real power of ACF Fluent comes when we make full use of the builder. It provides useful methods that can be chained together to build powerful ACF "queries". In this section, we will cover what each of these methods do and how to make use of them.
+
+The fluent builder provides useful methods that can be chained together to build powerful ACF "queries". In this section, we will cover what each of these methods do and how to make use of them.
 
 #### `Samrap\Acf\Fluent\Builder::id(int $id)`
 
-Set the post ID to use when getting or updating a field:
+Set the post ID for retrieving or updating a field:
 
 ```php
 use Samrap\Acf\Acf;
@@ -14,7 +15,11 @@ $field = Acf::field('url')
             ->get();
 ```
 
-Alternatively, you may pass the Post ID straight into the static `field` method as the second parameter: `Acf::field('url', 2)->get()`.
+Alternatively, you may pass the Post ID straight into the static `field` method as the second parameter:
+
+```php
+Acf::field('url', 2)->get();
+```
 
 #### `Samrap\Acf\Fluent\Builder::default(mixed $value)`
 
@@ -28,7 +33,7 @@ $field = Acf::field('heading')
             ->get();
 ```
 
-When we call the builder's get method, it will now check to make sure the call to `get_field` has returned a null or empty value. If the value is null or empty, we will instead get the string 'Hello World', otherwise we will get the actual value of the `heading` field. In the scope of this package, the term "empty" refers to an empty array or a string whose length is zero.
+When we call the builder's `get` method, it will now check the value returned from `get_field()` is niether `null` nor empty. If the value is null or empty it will return string 'Hello World', otherwise we will get the actual value of the `heading` field. In the scope of this package, the term "empty" refers to an empty array or a string whose length is zero.
 
 #### `Samrap\Acf\Fluent\Builder::expect(string $type)`
 
@@ -42,7 +47,7 @@ $field = Acf::subField('items')
             ->get();
 ```
 
-If the result of `items` is an array, then we will get the items just as normal. But if the result is not an array, `null` will be returned as if the value was not even set. Taking our knowledge of this, we can then chain on a `default` value to return instead of null if the type does not match:
+If the result of `items` is an array, then we will get the items just as expected. However, if the result is not an array, `null` will be returned as if the value was not even set. Taking our knowledge of this, we can then chain on a `default` value to return instead of null if the type does not match:
 
 ```php
 use Samrap\Acf\Acf;
@@ -52,6 +57,8 @@ $field = Acf::subField('items')
             ->default([])
             ->get();
 ```
+
+Now if the original value of the `items` field is not an array, we will still default to an empty array rather than the value `null`. This avoids the need for type checking after retrieving a field.
 
 ---
 
@@ -95,7 +102,7 @@ The current supported functions for the `escape` method are:
 
 #### `Samrap\Acf\Fluent\Builder::shortcodes(void)`
 
-ACF already does shortcodes by default with the WYSIWYG field type. However, you may have an alternative field type such as a textarea in which you wish to support shortcodes as well. You could pass the retreived value through the `do_shortcode` function, but with ACF Fluent there is a better way. The `shortcodes` method will instruct ACF Fluent to call the WordPress `do_shortcode` function on the retrieved value automatically:
+ACF already does shortcodes by default with the WYSIWYG field type. However, you may have an alternative field type such as a textarea in which you wish to support shortcodes as well. You could pass the retreived value through the `do_shortcode` function, but with ACF Fluent there is a better way. The `shortcodes` method will instruct ACF Fluent to pass the field through the `do_shortcode` function automatically:
 
 ```php
 use Samrap\Acf\Acf;
@@ -109,7 +116,7 @@ If the field value is not a string, a `\Samrap\Acf\Exceptions\RunnerException` e
 
 #### `Samrap\Acf\Fluent\Builder::matches(string $regex)`
 
-The value must match given `$regex` string:
+The value must match the given `$regex` string:
 
 ```php
 use Samrap\Acf\Acf;
