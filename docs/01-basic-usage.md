@@ -13,9 +13,9 @@ composer require samrap/acf-fluent
 
 ### Core Concepts
 
-All calls to ACF Fluent are done through the `Samrap\Acf\Acf` class. This class contains a few static factory methods that always return a `Samrap\Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields and sub fields, setting default values, adding constraints, and much more. 
+All calls to ACF Fluent are made through the `Samrap\Acf\Acf` class. This class contains static factory methods that each return a `Samrap\Acf\Fluent\Builder` instance. The builder provides the fluent interface for getting and updating fields, sub fields and options, setting default values, adding constraints, and much more. 
 
-We can retrieve a builder instance for an ACF _field_ by calling the `Samrap\Acf\Acf::field` method, passing in the name of the field as its argument. Let's take a look:
+We can retrieve a builder instance for an ACF _field_ by calling the `Samrap\Acf\Acf::field` method, passing in the name of the field as the argument. Let's take a look:
 
 ```php
 use Samrap\Acf\Acf;
@@ -23,7 +23,7 @@ use Samrap\Acf\Acf;
 $field = Acf::field('heading');
 ```
 
-In the above example, we get a new `Samrap\Acf\Fluent\Builder` instance for the `heading` ACF field. We can call the `get` method on the builder to retrieve the field:
+In the above example, we get a new `Samrap\Acf\Fluent\Builder` instance for an ACF field names `heading`. We can call the `get` method on the builder to retrieve the field:
 
 ```php
 use Samrap\Acf\Acf;
@@ -63,7 +63,7 @@ $heading = fluent_field('heading')->get();
 
 ---
 
-**Note:** The fluent helper functions are not included by default. In order to use them, the `vendor/samrap/acf-fluent/src/helpers.php` file will need to be included in your theme.
+**Note:** The fluent helper functions are not loaded by default. In order to use them, the `vendor/samrap/acf-fluent/src/helpers.php` file will need to be included in your theme.
 
 ---
 
