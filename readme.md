@@ -26,7 +26,7 @@ If you make heavy use of Advanced Custom Fields in your WordPress templates (you
 
 $heading = get_field('heading');
 
-if (is_null('heading')) {
+if (is_null($heading)) {
     $heading = get_the_title();
 } else {
     $heading = esc_html($heading);
