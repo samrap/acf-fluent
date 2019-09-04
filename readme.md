@@ -11,7 +11,7 @@
 
 **Are you using ACF Fluent?**
 
-ACF Fluent recently hit 3000 downloads, which I think is pretty cool! I mean, it's not _a ton_ of downloads, but cool nonetheless. If you're using it, I would love to hear your feedback. [Shoot me an email](mailto:me@samrapdev.com) and let me know what kind of projects you've used it on :)
+ACF Fluent is almost at 8000 downloads, which I think is pretty cool! I mean, it's not _a ton_ of downloads, but cool nonetheless. If you're using it, I would love to hear your feedback. [Shoot me an email](mailto:me@samrapdev.com) and let me know what kind of projects you've used it on :). While I'm not working on it actively at this time, I'm still happy to maintain it.
 
 ### What is ACF Fluent?
 
