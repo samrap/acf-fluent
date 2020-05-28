@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use Samrap\Acf\Acf;
-use Tests\TestCase;
-use Samrap\Acf\Fluent\Builder;
 use Samrap\Acf\Behaviors\FieldBehavior;
 use Samrap\Acf\Behaviors\SubFieldBehavior;
+use Samrap\Acf\Fluent\Builder;
+use Tests\TestCase;
 
 class AcfTest extends TestCase
 {

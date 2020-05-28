@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Samrap\Acf\Behaviors\FieldBehavior;
 use Samrap\Acf\Behaviors\SubFieldBehavior;
+use Tests\TestCase;
 
 class HelpersTest extends TestCase
 {

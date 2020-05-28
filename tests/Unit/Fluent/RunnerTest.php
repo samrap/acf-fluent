@@ -1,8 +1,8 @@
 <?php
 
-use Tests\TestCase;
 use Samrap\Acf\Fluent\Runner;
 use Tests\Support\Mocks\BehaviorMock;
+use Tests\TestCase;
 
 class RunnerTest extends TestCase
 {
