@@ -2,10 +2,10 @@
 
 namespace Samrap\Acf;
 
-use Samrap\Acf\Fluent\Runner;
-use Samrap\Acf\Fluent\Builder;
 use Samrap\Acf\Behaviors\FieldBehavior;
 use Samrap\Acf\Behaviors\SubFieldBehavior;
+use Samrap\Acf\Fluent\Builder;
+use Samrap\Acf\Fluent\Runner;
 
 class Acf
 {

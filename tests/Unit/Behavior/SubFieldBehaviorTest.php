@@ -1,7 +1,7 @@
 <?php
 
-use Tests\TestCase;
 use Samrap\Acf\Behaviors\SubFieldBehavior;
+use Tests\TestCase;
 
 class SubFieldBehaviorTest extends TestCase
 {

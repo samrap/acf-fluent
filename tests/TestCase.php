@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Tests\Support\Traits\MocksFields;
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use Tests\Support\Traits\MocksFields;
 
 class TestCase extends BaseTestCase
 {

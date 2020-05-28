@@ -1,8 +1,8 @@
 <?php
 
-use Tests\TestCase;
 use Samrap\Acf\Fluent\Builder;
 use Tests\Support\Mocks\RunnerMock;
+use Tests\TestCase;
 
 class BuilderTest extends TestCase
 {

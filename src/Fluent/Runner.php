@@ -2,8 +2,8 @@
 
 namespace Samrap\Acf\Fluent;
 
-use Samrap\Acf\Exceptions\RunnerException;
 use Samrap\Acf\Behaviors\BehaviorInterface;
+use Samrap\Acf\Exceptions\RunnerException;
 
 class Runner
 {
