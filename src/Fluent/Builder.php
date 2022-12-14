@@ -141,7 +141,7 @@ class Builder
     /**
      * Set the default component.
      *
-     * @param  string  $default
+     * @param  mixed  $default
      * @return \Samrap\Acf\Fluent\Builder
      */
     public function default($default)
